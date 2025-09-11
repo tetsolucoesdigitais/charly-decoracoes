@@ -47,6 +47,29 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Charly Brand Colors
+        charly: {
+          pink: {
+            DEFAULT: "hsl(var(--charly-pink))",
+            light: "hsl(var(--charly-pink-light))",
+            dark: "hsl(var(--charly-pink-dark))",
+          },
+          purple: {
+            DEFAULT: "hsl(var(--charly-purple))",
+            light: "hsl(var(--charly-purple-light))",
+            dark: "hsl(var(--charly-purple-dark))",
+          },
+          mint: {
+            DEFAULT: "hsl(var(--charly-mint))",
+            light: "hsl(var(--charly-mint-light))",
+            dark: "hsl(var(--charly-mint-dark))",
+          },
+          gold: {
+            DEFAULT: "hsl(var(--charly-gold))",
+            light: "hsl(var(--charly-gold-light))",
+            dark: "hsl(var(--charly-gold-dark))",
+          },
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
