@@ -64,29 +64,21 @@ const Navbar = () => {
               
               {portfolioOpen && (
                 <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[150px]">
-                  <button
-                    onClick={() => scrollToSection("gallery")}
+                  <a
+                    href="/galeria"
                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-accent hover:text-charly-pink transition-smooth"
                   >
                     Imagens
-                  </button>
-                  <button
-                    onClick={() => scrollToSection("videos")}
+                  </a>
+                  <a
+                    href="/videos"
                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-accent hover:text-charly-pink transition-smooth"
                   >
                     Vídeos
-                  </button>
+                  </a>
                 </div>
               )}
             </div>
-
-            <Button 
-              variant="hero" 
-              size="sm"
-              onClick={() => scrollToSection("booking")}
-            >
-              Fazer Orçamento
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -121,29 +113,18 @@ const Navbar = () => {
               
               <div className="px-3 py-1">
                 <div className="text-sm font-medium text-muted-foreground mb-2">Portfólio</div>
-                <button
-                  onClick={() => scrollToSection("gallery")}
+                <a
+                  href="/galeria"
                   className="block w-full text-left px-3 py-1 text-foreground hover:text-charly-pink transition-smooth"
                 >
                   Imagens
-                </button>
-                <button
-                  onClick={() => scrollToSection("videos")}
+                </a>
+                <a
+                  href="/videos"
                   className="block w-full text-left px-3 py-1 text-foreground hover:text-charly-pink transition-smooth"
                 >
                   Vídeos
-                </button>
-              </div>
-              
-              <div className="px-3 pt-2">
-                <Button 
-                  variant="hero" 
-                  size="sm" 
-                  className="w-full"
-                  onClick={() => scrollToSection("booking")}
-                >
-                  Fazer Orçamento
-                </Button>
+                </a>
               </div>
             </div>
           </div>
