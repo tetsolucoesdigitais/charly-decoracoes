@@ -52,7 +52,7 @@ const Hero = () => {
       </video>
       
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-charly-pink/10 to-charly-purple/20 backdrop-blur-[2px]"></div>
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 text-charly-pink/30 floating">
@@ -68,24 +68,16 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-20 relative z-10">
         {/* Content */}
         <div className="text-center space-y-12">
-          {/* Logo and Title */}
+          {/* Title */}
           <div className="space-y-8">
-            <div className="flex justify-center">
-              <img 
-                src={logo} 
-                alt="Charly Decorações" 
-                className="h-24 w-auto floating hover:scale-110 transition-transform cursor-pointer"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              />
-            </div>
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl">
+              <h1 className="text-6xl lg:text-8xl font-bold text-gradient-primary neon-text leading-tight drop-shadow-2xl">
                 Charly
               </h1>
-              <h2 className="text-3xl lg:text-5xl font-light text-charly-gold drop-shadow-lg">
+              <h2 className="text-4xl lg:text-6xl font-light text-charly-gold neon-text drop-shadow-lg">
                 Decorações
               </h2>
-              <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg">
+              <p className="text-xl lg:text-2xl text-foreground font-medium max-w-3xl mx-auto drop-shadow-lg">
                 Transformando seus sonhos em realidade com decorações únicas e inesquecíveis
               </p>
             </div>
@@ -97,7 +89,7 @@ const Hero = () => {
               variant="hero" 
               size="xl"
               onClick={scrollToBooking}
-              className="group bg-gradient-primary hover:scale-105 shadow-2xl"
+              className="group bg-gradient-primary hover:scale-110 shadow-2xl border-2 border-charly-pink/30 hover:border-charly-pink hover:shadow-[0_0_30px_hsl(var(--charly-pink))] transition-all duration-300"
             >
               <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
               Fazer Orçamento
@@ -106,7 +98,7 @@ const Hero = () => {
               variant="futuristic" 
               size="xl"
               onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+              className="bg-card/60 backdrop-blur-sm border-2 border-charly-purple/30 text-foreground hover:bg-charly-purple/20 hover:border-charly-purple hover:text-charly-purple hover:shadow-[0_0_20px_hsl(var(--charly-purple))] transition-all duration-300"
             >
               Conheça Nossos Serviços
             </Button>
@@ -114,23 +106,23 @@ const Hero = () => {
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="stats-card rounded-2xl p-8 text-center counter-animate">
-              <div className="text-4xl lg:text-5xl font-bold text-charly-pink mb-2">
+            <div className="stats-card rounded-3xl p-8 text-center counter-animate">
+              <div className="text-4xl lg:text-5xl font-bold text-charly-pink neon-text mb-2">
                 {stats.events}+
               </div>
-              <div className="text-lg text-white/80">Eventos Realizados</div>
+              <div className="text-lg text-muted-foreground font-medium">Eventos Realizados</div>
             </div>
-            <div className="stats-card rounded-2xl p-8 text-center counter-animate" style={{ animationDelay: "0.2s" }}>
-              <div className="text-4xl lg:text-5xl font-bold text-charly-mint mb-2">
+            <div className="stats-card rounded-3xl p-8 text-center counter-animate" style={{ animationDelay: "0.2s" }}>
+              <div className="text-4xl lg:text-5xl font-bold text-charly-mint neon-text mb-2">
                 {stats.satisfaction}%
               </div>
-              <div className="text-lg text-white/80">Satisfação</div>
+              <div className="text-lg text-muted-foreground font-medium">Satisfação</div>
             </div>
-            <div className="stats-card rounded-2xl p-8 text-center counter-animate" style={{ animationDelay: "0.4s" }}>
-              <div className="text-4xl lg:text-5xl font-bold text-charly-purple mb-2">
+            <div className="stats-card rounded-3xl p-8 text-center counter-animate" style={{ animationDelay: "0.4s" }}>
+              <div className="text-4xl lg:text-5xl font-bold text-charly-purple neon-text mb-2">
                 {stats.experience}+
               </div>
-              <div className="text-lg text-white/80">Anos de Experiência</div>
+              <div className="text-lg text-muted-foreground font-medium">Anos de Experiência</div>
             </div>
           </div>
         </div>
@@ -138,8 +130,8 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-sm">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+        <div className="w-6 h-10 border-2 border-charly-pink/60 rounded-full flex justify-center backdrop-blur-sm bg-card/20">
+          <div className="w-1 h-3 bg-charly-pink rounded-full mt-2 animate-pulse shadow-[0_0_10px_hsl(var(--charly-pink))]"></div>
         </div>
       </div>
     </section>
