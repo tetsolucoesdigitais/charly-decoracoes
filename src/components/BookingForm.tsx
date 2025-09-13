@@ -26,6 +26,7 @@ interface FormData {
   eventType: string;
   customEventType: string;
   thematic: string;
+  themeDescription: string;
   guestCount: string;
   eventDate: string;
   
@@ -48,6 +49,7 @@ const BookingForm = () => {
     eventType: "",
     customEventType: "",
     thematic: "",
+    themeDescription: "",
     guestCount: "",
     eventDate: "",
     services: [],
@@ -136,6 +138,7 @@ ${formData.complement ? `Complemento: ${formData.complement}` : ''}
 🎊 *DETALHES DO EVENTO*
 Tipo: ${eventTypeLabel}
 Temático: ${formData.thematic === 'yes' ? 'Sim ✅' : 'Não ❌'}
+${formData.thematic === 'yes' && formData.themeDescription ? `Tema: ${formData.themeDescription}` : ''}
 Quantidade de Convidados: ${formData.guestCount}
 Data do Evento: ${new Date(formData.eventDate).toLocaleDateString('pt-BR')}
 
@@ -173,7 +176,8 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
       case 2:
         return formData.cep && formData.address && formData.city && formData.number;
       case 3:
-        return formData.eventType && formData.thematic && formData.guestCount && formData.eventDate;
+        const hasThemeDescription = formData.thematic === 'yes' ? formData.themeDescription.trim() !== '' : true;
+        return formData.eventType && formData.thematic && formData.guestCount && formData.eventDate && hasThemeDescription;
       case 4:
         return formData.services.length > 0;
       default:
@@ -192,26 +196,26 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
 
   if (showSuccess) {
     return (
-      <section id="booking" className="py-20 bg-gradient-hero">
+      <section id="booking" className="py-12 sm:py-20">
         <div className="container mx-auto px-4">
           <Card className="max-w-2xl mx-auto text-center card-elegant">
-            <CardContent className="pt-12 pb-8">
-              <div className="text-6xl mb-6">🎉</div>
-              <h2 className="text-3xl font-bold text-gradient-primary mb-4">
+            <CardContent className="pt-8 sm:pt-12 pb-6 sm:pb-8">
+              <div className="text-4xl sm:text-6xl mb-4 sm:mb-6">🎉</div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gradient-primary mb-4">
                 Orçamento Enviado com Sucesso!
               </h2>
-              <p className="text-muted-foreground mb-8 text-lg">
+              <p className="text-muted-foreground mb-6 sm:mb-8 text-base sm:text-lg px-4">
                 Seu orçamento foi enviado para nosso WhatsApp. Entraremos em contato em breve!
               </p>
               
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4 flex flex-col sm:flex-row sm:space-y-0 sm:space-x-4 sm:justify-center">
                 <Button
                   variant="hero"
                   size="lg"
                   onClick={() => window.open('https://www.instagram.com/charly_decoracoes/', '_blank')}
-                  className="w-full sm:w-auto mr-4"
+                  className="w-full sm:w-auto"
                 >
-                  <Instagram className="w-5 h-5 mr-2" />
+                  <Instagram className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Siga no Instagram
                 </Button>
                 
@@ -221,7 +225,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   onClick={() => window.open('https://share.google/XX80TWwxEP2vjB59W', '_blank')}
                   className="w-full sm:w-auto"
                 >
-                  <Star className="w-5 h-5 mr-2" />
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Avaliar no Google
                 </Button>
               </div>
@@ -243,6 +247,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                     eventType: "",
                     customEventType: "",
                     thematic: "",
+                    themeDescription: "",
                     guestCount: "",
                     eventDate: "",
                     services: [],
@@ -261,33 +266,33 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
   }
 
   return (
-    <section id="booking" className="py-20 bg-gradient-hero">
+    <section id="booking" className="py-12 sm:py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
             Solicite seu Orçamento
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Preencha os dados abaixo e receba um orçamento personalizado para seu evento
           </p>
         </div>
 
         {/* Progress Bar */}
-        <div className="max-w-4xl mx-auto mb-8">
-          <div className="flex items-center justify-between mb-4">
+        <div className="max-w-4xl mx-auto mb-6 sm:mb-8">
+          <div className="flex items-center justify-between mb-3 sm:mb-4 px-2">
             {[1, 2, 3, 4].map((step) => (
               <div
                 key={step}
-                className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-smooth ${
+                className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 transition-smooth ${
                   currentStep >= step
                     ? "bg-charly-pink border-charly-pink text-white"
                     : "border-muted-foreground text-muted-foreground"
                 }`}
               >
-                {step === 1 && <User className="w-5 h-5" />}
-                {step === 2 && <MapPin className="w-5 h-5" />}
-                {step === 3 && <Calendar className="w-5 h-5" />}
-                {step === 4 && <Package className="w-5 h-5" />}
+                {step === 1 && <User className="w-4 h-4 sm:w-5 sm:h-5" />}
+                {step === 2 && <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />}
+                {step === 3 && <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />}
+                {step === 4 && <Package className="w-4 h-4 sm:w-5 sm:h-5" />}
               </div>
             ))}
           </div>
@@ -428,7 +433,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   <Label>Evento Temático? *</Label>
                   <RadioGroup
                     value={formData.thematic}
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, thematic: value }))}
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, thematic: value, themeDescription: value === 'no' ? '' : prev.themeDescription }))}
                     className="mt-2"
                   >
                     <div className="flex items-center space-x-2">
@@ -440,9 +445,23 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                       <Label htmlFor="thematic-no">Não</Label>
                     </div>
                   </RadioGroup>
+                  
+                  {formData.thematic === "yes" && (
+                    <div className="mt-4">
+                      <Label htmlFor="themeDescription">Nos fale qual o tema que deseja! *</Label>
+                      <Textarea
+                        id="themeDescription"
+                        value={formData.themeDescription}
+                        onChange={(e) => setFormData(prev => ({ ...prev, themeDescription: e.target.value }))}
+                        placeholder="Descreva o tema do seu evento (ex: Princesas, Super-heróis, Tropical, etc.)"
+                        className="mt-2"
+                        rows={3}
+                      />
+                    </div>
+                  )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="guestCount">Quantidade de Convidados *</Label>
                     <Select
@@ -479,7 +498,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
               <div className="space-y-6">
                 <div>
                   <Label>Selecione os serviços desejados *</Label>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
                     {serviceOptions.map((service) => (
                       <div
                         key={service}
@@ -490,7 +509,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                             : "border-border hover:border-charly-pink/50"
                         }`}
                       >
-                        <span className="text-sm">{service}</span>
+                        <span className="text-xs sm:text-sm">{service}</span>
                       </div>
                     ))}
                   </div>
@@ -521,12 +540,12 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between pt-6">
+            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 pt-4 sm:pt-6">
               <Button
                 variant="outline"
                 onClick={prevStep}
                 disabled={currentStep === 1}
-                className="flex items-center"
+                className="flex items-center justify-center w-full sm:w-auto order-2 sm:order-1"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Voltar
@@ -537,7 +556,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   variant="hero"
                   onClick={nextStep}
                   disabled={!isStepValid()}
-                  className="flex items-center"
+                  className="flex items-center justify-center w-full sm:w-auto order-1 sm:order-2"
                 >
                   Próximo
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -547,7 +566,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   variant="gradient"
                   onClick={sendToWhatsApp}
                   disabled={!isStepValid()}
-                  className="flex items-center"
+                  className="flex items-center justify-center w-full sm:w-auto order-1 sm:order-2"
                 >
                   <Send className="w-4 h-4 mr-2" />
                   Enviar Orçamento

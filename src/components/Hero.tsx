@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Heart, Star } from "lucide-react";
 import { useEffect, useState } from "react";
-import logo from "@/assets/logo.png";
 
 const Hero = () => {
   const [stats, setStats] = useState({ events: 0, satisfaction: 0, experience: 0 });
@@ -52,17 +51,17 @@ const Hero = () => {
       </video>
       
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+      <div className="absolute inset-0 bg-purple-900/50 backdrop-blur-[1px]"></div>
       
       {/* Floating Elements */}
-      <div className="absolute top-20 left-10 text-charly-pink/30 floating">
-        <Heart className="w-8 h-8" />
+      <div className="absolute top-20 left-4 lg:left-10 text-charly-pink/30 floating">
+        <Heart className="w-6 h-6 lg:w-8 lg:h-8" />
       </div>
-      <div className="absolute top-40 right-20 text-charly-mint/30 floating" style={{ animationDelay: "2s" }}>
-        <Sparkles className="w-6 h-6" />
+      <div className="absolute top-40 right-4 lg:right-20 text-charly-mint/30 floating" style={{ animationDelay: "2s" }}>
+        <Sparkles className="w-4 h-4 lg:w-6 lg:h-6" />
       </div>
-      <div className="absolute bottom-40 left-20 text-charly-purple/30 floating" style={{ animationDelay: "4s" }}>
-        <Star className="w-7 h-7" />
+      <div className="absolute bottom-40 left-4 lg:left-20 text-charly-purple/30 floating" style={{ animationDelay: "4s" }}>
+        <Star className="w-5 h-5 lg:w-7 lg:h-7" />
       </div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
@@ -72,20 +71,20 @@ const Hero = () => {
           <div className="space-y-8">
             <div className="flex justify-center">
               <img 
-                src={logo} 
+                src="https://i.imgur.com/9wU7G0V.png" 
                 alt="Charly Decorações" 
-                className="h-24 w-auto floating hover:scale-110 transition-transform cursor-pointer"
+                className="h-24 sm:h-28 lg:h-32 w-auto floating hover:scale-110 transition-transform cursor-pointer relative z-50"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               />
             </div>
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl">
+              <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl">
                 Charly
               </h1>
-              <h2 className="text-3xl lg:text-5xl font-light text-charly-gold drop-shadow-lg">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-light text-charly-gold drop-shadow-lg">
                 Decorações
               </h2>
-              <p className="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg">
+              <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg px-4">
                 Transformando seus sonhos em realidade com decorações únicas e inesquecíveis
               </p>
             </div>
@@ -105,7 +104,7 @@ const Hero = () => {
             <Button 
               variant="futuristic" 
               size="xl"
-              onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
               className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
             >
               Conheça Nossos Serviços
@@ -113,24 +112,24 @@ const Hero = () => {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="stats-card rounded-2xl p-8 text-center counter-animate">
-              <div className="text-4xl lg:text-5xl font-bold text-charly-pink mb-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto px-4">
+            <div className="stats-card rounded-2xl p-4 sm:p-8 text-center counter-animate">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-charly-pink mb-2">
                 {stats.events}+
               </div>
-              <div className="text-lg text-white/80">Eventos Realizados</div>
+              <div className="text-sm sm:text-lg text-white/80">Eventos Realizados</div>
             </div>
-            <div className="stats-card rounded-2xl p-8 text-center counter-animate" style={{ animationDelay: "0.2s" }}>
-              <div className="text-4xl lg:text-5xl font-bold text-charly-mint mb-2">
+            <div className="stats-card rounded-2xl p-4 sm:p-8 text-center counter-animate" style={{ animationDelay: "0.2s" }}>
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-charly-mint mb-2">
                 {stats.satisfaction}%
               </div>
-              <div className="text-lg text-white/80">Satisfação</div>
+              <div className="text-sm sm:text-lg text-white/80">Satisfação</div>
             </div>
-            <div className="stats-card rounded-2xl p-8 text-center counter-animate" style={{ animationDelay: "0.4s" }}>
-              <div className="text-4xl lg:text-5xl font-bold text-charly-purple mb-2">
+            <div className="stats-card rounded-2xl p-4 sm:p-8 text-center counter-animate" style={{ animationDelay: "0.4s" }}>
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-charly-purple mb-2">
                 {stats.experience}+
               </div>
-              <div className="text-lg text-white/80">Anos de Experiência</div>
+              <div className="text-sm sm:text-lg text-white/80">Anos de Experiência</div>
             </div>
           </div>
         </div>

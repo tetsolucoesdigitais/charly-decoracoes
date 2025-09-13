@@ -4,58 +4,154 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Search, Play, Clock, Eye } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Search, Play, Eye, Heart } from "lucide-react";
 
 const Videos = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [currentVideo, setCurrentVideo] = useState<string | null>(null);
 
-  // Mock data - in a real app, this would come from an API
+  // Vídeos originais do portfólio
   const videos = [
     {
       id: 1,
-      title: "Casamento dos Sonhos - Maria & João",
-      category: "Casamento",
-      duration: "2:30",
-      thumbnail: "https://images.unsplash.com/photo-1519167758481-83f29da73fb2?w=400",
-      videoUrl: "https://sample-videos.com/zip/10/mp4/mp4-1920x1080/BigBuckBunny_320x180.mp4",
-      description: "Uma celebração emocionante com decoração romântica",
-      views: "1.2k"
+      title: "Decoração Charly - Vídeo 1",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/nQokL3f.mp4",
+      thumbnail: "https://i.imgur.com/nQokL3f.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
     },
     {
       id: 2,
-      title: "Festa Infantil Princesa Sofia",
-      category: "Infantil",
-      duration: "1:45",
-      thumbnail: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400",
-      videoUrl: "https://sample-videos.com/zip/10/mp4/mp4-1920x1080/BigBuckBunny_320x180.mp4",
-      description: "Um mundo mágico criado para a pequena princesa",
-      views: "856"
+      title: "Decoração Charly - Vídeo 2",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/PEpOMeO.mp4",
+      thumbnail: "https://i.imgur.com/PEpOMeO.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
     },
     {
       id: 3,
-      title: "Aniversário 50 Anos - Elegância Total",
-      category: "Aniversário",
-      duration: "3:15",
-      thumbnail: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400",
-      videoUrl: "https://sample-videos.com/zip/10/mp4/mp4-1920x1080/BigBuckBunny_320x180.mp4",
-      description: "Sofisticação e elegância em cada detalhe",
-      views: "2.1k"
+      title: "Decoração Charly - Vídeo 3",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/m5WG3PW.mp4",
+      thumbnail: "https://i.imgur.com/m5WG3PW.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
     },
     {
       id: 4,
-      title: "Evento Corporativo Tech Summit",
-      category: "Corporativo",
-      duration: "4:20",
-      thumbnail: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400",
-      videoUrl: "https://sample-videos.com/zip/10/mp4/mp4-1920x1080/BigBuckBunny_320x180.mp4",
-      description: "Design moderno para o maior evento tech da cidade",
-      views: "3.5k"
+      title: "Decoração Charly - Vídeo 4",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/6TIOJS3.mp4",
+      thumbnail: "https://i.imgur.com/6TIOJS3.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 5,
+      title: "Decoração Charly - Vídeo 5",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/mV8FR70.mp4",
+      thumbnail: "https://i.imgur.com/mV8FR70.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 6,
+      title: "Decoração Charly - Vídeo 6",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/6KBGy25.mp4",
+      thumbnail: "https://i.imgur.com/6KBGy25.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 7,
+      title: "Decoração Charly - Vídeo 7",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/OyEkpqr.mp4",
+      thumbnail: "https://i.imgur.com/OyEkpqr.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 8,
+      title: "Decoração Charly - Vídeo 8",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/oMHpHvS.mp4",
+      thumbnail: "https://i.imgur.com/oMHpHvS.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 9,
+      title: "Decoração Charly - Vídeo 9",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/ZctHqQg.mp4",
+      thumbnail: "https://i.imgur.com/ZctHqQg.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 10,
+      title: "Decoração Charly - Vídeo 10",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/zdmvo1I.mp4",
+      thumbnail: "https://i.imgur.com/zdmvo1I.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 11,
+      title: "Decoração Charly - Vídeo 11",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/Q5f2wEZ.mp4",
+      thumbnail: "https://i.imgur.com/Q5f2wEZ.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 12,
+      title: "Decoração Charly - Vídeo 12",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/HyVbPfT.mp4",
+      thumbnail: "https://i.imgur.com/HyVbPfT.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 13,
+      title: "Decoração Charly - Vídeo 13",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/17cwbUM.mp4",
+      thumbnail: "https://i.imgur.com/17cwbUM.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 14,
+      title: "Decoração Charly - Vídeo 14",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/3UfCLYS.mp4",
+      thumbnail: "https://i.imgur.com/3UfCLYS.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 15,
+      title: "Decoração Charly - Vídeo 15",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/QH6z8bK.mp4",
+      thumbnail: "https://i.imgur.com/QH6z8bK.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 16,
+      title: "Decoração Charly - Vídeo 16",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/V4HhXj9.mp4",
+      thumbnail: "https://i.imgur.com/V4HhXj9.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
+    },
+    {
+      id: 17,
+      title: "Decoração Charly - Vídeo 17",
+      category: "Vídeos",
+      videoUrl: "https://i.imgur.com/EddIAGi.mp4",
+      thumbnail: "https://i.imgur.com/EddIAGi.jpg",
+      description: "Vídeo exclusivo das decorações Charly"
     }
   ];
 
-  const categories = ["Todos", "Casamento", "Infantil", "Aniversário", "Corporativo"];
+  const categories = ["Todos", "Vídeos"];
 
   const filteredVideos = videos.filter(video => {
     const matchesSearch = video.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -70,37 +166,37 @@ const Videos = () => {
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 text-center">
+        <section className="py-12 sm:py-20 text-center">
           <div className="container mx-auto px-4">
-            <h1 className="text-5xl lg:text-7xl font-bold text-gradient-primary mb-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-gradient-primary mb-4 sm:mb-6">
               Galeria de Vídeos
             </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto px-4">
               Veja nossos projetos ganhando vida através de vídeos exclusivos
             </p>
           </div>
         </section>
 
         {/* Search and Filter */}
-        <section className="pb-12">
+        <section className="pb-8 sm:pb-12">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="relative mb-8">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <div className="relative mb-6 sm:mb-8">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 sm:w-5 sm:h-5" />
                 <Input
                   placeholder="Buscar vídeos..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-12 bg-card/50 backdrop-blur-sm border-charly-pink/20 focus:border-charly-pink"
+                  className="pl-10 sm:pl-12 bg-card/50 backdrop-blur-sm border-charly-pink/20 focus:border-charly-pink text-sm sm:text-base"
                 />
               </div>
               
-              <div className="flex flex-wrap gap-3 justify-center">
+              <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
                 {categories.map((category) => (
                   <Badge
                     key={category}
                     variant={selectedCategory === category ? "default" : "outline"}
-                    className={`cursor-pointer transition-all ${
+                    className={`cursor-pointer transition-all text-xs sm:text-sm ${
                       selectedCategory === category 
                         ? "bg-gradient-primary text-white" 
                         : "border-charly-pink/30 hover:border-charly-pink hover:bg-charly-pink/10"
@@ -115,70 +211,78 @@ const Videos = () => {
           </div>
         </section>
 
-        {/* Featured Video Player */}
-        {currentVideo && (
-          <section className="pb-12">
-            <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <Card className="overflow-hidden stats-card">
-                  <CardContent className="p-0">
-                    <video
-                      src={currentVideo}
-                      controls
-                      autoPlay
-                      className="w-full aspect-video"
-                      onEnded={() => setCurrentVideo(null)}
-                    />
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-        )}
 
-        {/* Videos Grid */}
-        <section className="pb-20">
+
+        {/* Video Grid */}
+        <section className="pb-12 sm:pb-20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid gap-4 sm:gap-6 lg:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredVideos.map((video) => (
-                <Card key={video.id} className="group cursor-pointer overflow-hidden stats-card">
-                  <CardContent className="p-0">
-                    <div 
-                      className="relative overflow-hidden"
-                      onClick={() => setCurrentVideo(video.videoUrl)}
-                    >
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-4 group-hover:bg-charly-pink/80 transition-all duration-300">
-                          <Play className="w-8 h-8 text-white fill-white" />
+                <Dialog key={video.id}>
+                  <DialogTrigger asChild>
+                    <Card className="group cursor-pointer overflow-hidden stats-card">
+                      <CardContent className="p-0">
+                        <div className="relative overflow-hidden">
+                          <div className="relative aspect-[9/16] bg-black rounded-lg overflow-hidden">
+                            <img
+                              src={video.thumbnail}
+                              alt={video.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 sm:p-4">
+                                <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="bg-white/20 backdrop-blur-sm rounded-full p-2 sm:p-3">
+                              <Play className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+                            </div>
+                          </div>
+                          <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                            <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-white/80 hover:text-charly-pink transition-colors" />
+                          </div>
                         </div>
+                        <div className="p-4 sm:p-6">
+                          <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">
+                            {video.title}
+                          </h3>
+                          <p className="text-muted-foreground text-xs sm:text-sm mb-3">
+                            {video.description}
+                          </p>
+                          <Badge variant="outline" className="border-charly-purple/30 text-charly-purple text-xs">
+                            {video.category}
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </DialogTrigger>
+                  
+                  <DialogContent className="bg-card/95 backdrop-blur-xl border-charly-pink/20 max-w-md">
+                    <div className="space-y-4">
+                      <div className="aspect-[9/16] bg-black rounded-lg overflow-hidden">
+                        <video
+                          src={video.videoUrl}
+                          controls
+                          className="w-full h-full object-cover"
+                          poster={video.thumbnail}
+                        >
+                          Seu navegador não suporta o elemento de vídeo.
+                        </video>
                       </div>
-                      <div className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-sm rounded px-2 py-1 flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-white" />
-                        <span className="text-white text-xs">{video.duration}</span>
-                      </div>
-                      <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm rounded px-2 py-1 flex items-center gap-1">
-                        <Eye className="w-3 h-3 text-white" />
-                        <span className="text-white text-xs">{video.views}</span>
+                      <div className="text-center">
+                        <h3 className="text-2xl font-semibold text-gradient-primary mb-2">
+                          {video.title}
+                        </h3>
+                        <p className="text-muted-foreground">
+                          {video.description}
+                        </p>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-charly-pink transition-colors">
-                        {video.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-3">
-                        {video.description}
-                      </p>
-                      <Badge variant="outline" className="border-charly-purple/30 text-charly-purple">
-                        {video.category}
-                      </Badge>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </DialogContent>
+                </Dialog>
               ))}
             </div>
           </div>

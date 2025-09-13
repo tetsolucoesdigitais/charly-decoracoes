@@ -50,7 +50,7 @@ const Testimonials = () => {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section className="py-20 bg-gradient-hero overflow-hidden">
+    <section className="py-20 overflow-hidden">
       <div className="container mx-auto px-4 mb-12">
         <div className="text-center">
           <h2 className="text-4xl lg:text-5xl font-bold text-gradient-primary mb-4">
@@ -65,7 +65,7 @@ const Testimonials = () => {
       <div className="relative">
         <div className="flex testimonials-scroll gap-6 py-4">
           {duplicatedTestimonials.map((testimonial, index) => (
-            <Card key={index} className="flex-shrink-0 w-80 card-shadow hover:card-elegant transition-smooth">
+            <Card key={index} className="flex-shrink-0 w-80 card-shadow hover:card-elegant transition-smooth bg-fuchsia-600/20 border-fuchsia-500/30">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
                   <div className="text-3xl">{testimonial.image}</div>

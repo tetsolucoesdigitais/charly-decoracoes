@@ -19,7 +19,7 @@ const buttonVariants = cva(
         hero: "bg-gradient-primary text-primary-foreground hover:scale-105 glow-effect font-semibold shadow-xl transform-gpu",
         futuristic: "futuristic-border bg-background text-foreground hover:bg-gradient-secondary hover:text-secondary-foreground transition-bounce",
         gradient: "bg-gradient-accent text-foreground hover:scale-105 shadow-lg font-semibold",
-        mint: "bg-charly-mint text-foreground hover:bg-charly-mint/90 shadow-lg",
+        mint: "bg-charly-mint text-black hover:bg-charly-mint/90 shadow-lg",
         gold: "bg-charly-gold text-foreground hover:bg-charly-gold/90 shadow-lg",
       },
       size: {
