@@ -80,10 +80,18 @@ const Footer = () => {
                   <Mail className="w-5 h-5 text-charly-purple group-hover:scale-110 transition-transform" />
                   <span className="text-pink-200">contato@charlydecor.com</span>
                 </div>
-                <div className="flex items-center space-x-3 group">
+                <a 
+                  href="https://www.google.com/maps/place/R.+Petrolina,+106+-+Jardim+Brasil,+Guarulhos+-+SP,+07270-370/@-23.4671,-46.4299,17z/data=!4m6!3m5!1s0x94ce623aad438c95:0x3a44370766d1bc2d!8m2!3d-23.467081!4d-46.4298632!16s%2Fg%2F11c4k9mcsr?hl=pt-BR&entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 group hover:bg-charly-pink/10 p-3 rounded-lg transition-all duration-300 border border-charly-gold/20 hover:border-charly-gold/50 backdrop-blur-sm"
+                >
                   <MapPin className="w-5 h-5 text-charly-gold group-hover:scale-110 transition-transform" />
-                  <span className="text-pink-200">São Paulo, SP</span>
-                </div>
+                  <div className="text-pink-200">
+                    <p className="font-medium group-hover:text-charly-gold transition-colors">Nossa Localização</p>
+                    <p className="text-sm text-pink-300">Guarulhos - SP</p>
+                  </div>
+                </a>
               </div>
             </div>
 
