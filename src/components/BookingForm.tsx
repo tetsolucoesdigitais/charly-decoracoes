@@ -385,96 +385,106 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
         </div>
 
         <Card className="max-w-4xl mx-auto card-elegant">
-          <CardHeader>
-            <CardTitle className="text-2xl text-center">
+          <CardHeader className="px-4 sm:px-6 py-4 sm:py-6">
+            <CardTitle className="text-xl sm:text-2xl lg:text-3xl text-center font-bold">
               {currentStep === 1 && "Dados Pessoais"}
-              {currentStep === 2 && "Endereço do Evento"}
+              {currentStep === 2 && "Endereço"}
               {currentStep === 3 && "Detalhes do Evento"}
-              {currentStep === 4 && "Serviços Desejados"}
+              {currentStep === 4 && "Serviços e Finalização"}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6">
             {/* Step 1: Personal Data */}
             {currentStep === 1 && (
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="name">Nome Completo *</Label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder="Digite seu nome completo"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="whatsapp">WhatsApp *</Label>
-                  <Input
-                    id="whatsapp"
-                    value={formData.whatsapp}
-                    onChange={(e) => setFormData(prev => ({ ...prev, whatsapp: e.target.value }))}
-                    placeholder="(11) 99999-9999"
-                  />
+              <div className="space-y-4 sm:space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-sm sm:text-base font-medium">Nome Completo *</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="Digite seu nome completo"
+                      className="h-11 sm:h-12 text-base"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="whatsapp" className="text-sm sm:text-base font-medium">WhatsApp *</Label>
+                    <Input
+                      id="whatsapp"
+                      value={formData.whatsapp}
+                      onChange={(e) => setFormData(prev => ({ ...prev, whatsapp: e.target.value }))}
+                      placeholder="(11) 99999-9999"
+                      className="h-11 sm:h-12 text-base"
+                    />
+                  </div>
                 </div>
               </div>
             )}
 
             {/* Step 2: Address */}
             {currentStep === 2 && (
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="cep">CEP *</Label>
+              <div className="space-y-4 sm:space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="cep" className="text-sm sm:text-base font-medium">CEP *</Label>
                   <Input
                     id="cep"
                     value={formData.cep}
                     onChange={(e) => handleCepChange(e.target.value)}
                     placeholder="00000-000"
                     maxLength={8}
+                    className="h-11 sm:h-12 text-base"
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="md:col-span-2">
-                    <Label htmlFor="address">Endereço *</Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="md:col-span-2 space-y-2">
+                    <Label htmlFor="address" className="text-sm sm:text-base font-medium">Endereço *</Label>
                     <Input
                       id="address"
                       value={formData.address}
                       onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
                       placeholder="Rua, Avenida..."
+                      className="h-11 sm:h-12 text-base"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="number">Número *</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="number" className="text-sm sm:text-base font-medium">Número *</Label>
                     <Input
                       id="number"
                       value={formData.number}
                       onChange={(e) => setFormData(prev => ({ ...prev, number: e.target.value }))}
                       placeholder="123"
+                      className="h-11 sm:h-12 text-base"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="complement">Complemento</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="complement" className="text-sm sm:text-base font-medium">Complemento</Label>
                     <Input
                       id="complement"
                       value={formData.complement}
                       onChange={(e) => setFormData(prev => ({ ...prev, complement: e.target.value }))}
                       placeholder="Apto, Casa..."
+                      className="h-11 sm:h-12 text-base"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="neighborhood">Bairro</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="neighborhood" className="text-sm sm:text-base font-medium">Bairro</Label>
                     <Input
                       id="neighborhood"
                       value={formData.neighborhood}
                       onChange={(e) => setFormData(prev => ({ ...prev, neighborhood: e.target.value }))}
                       placeholder="Nome do bairro"
+                      className="h-11 sm:h-12 text-base"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="city">Cidade</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="city" className="text-sm sm:text-base font-medium">Cidade</Label>
                     <Input
                       id="city"
                       value={formData.city}
                       onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
                       placeholder="Nome da cidade"
+                      className="h-11 sm:h-12 text-base"
                     />
                   </div>
                 </div>
@@ -484,24 +494,24 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
             {/* Step 3: Event Details */}
             {currentStep === 3 && (
               <div className="space-y-6">
-                <div>
-                  <Label>Tipo de Evento *</Label>
+                <div className="space-y-3">
+                  <Label className="text-sm sm:text-base font-medium">Tipo de Evento *</Label>
                   <RadioGroup
                     value={formData.eventType}
                     onValueChange={(value) => setFormData(prev => ({ ...prev, eventType: value }))}
-                    className="mt-2"
+                    className="mt-2 space-y-3"
                   >
                     {eventTypes.map((type) => (
-                      <div key={type.value} className="flex items-center space-x-2">
-                        <RadioGroupItem value={type.value} id={type.value} />
-                        <Label htmlFor={type.value}>{type.label}</Label>
+                      <div key={type.value} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                        <RadioGroupItem value={type.value} id={type.value} className="w-5 h-5" />
+                        <Label htmlFor={type.value} className="text-sm sm:text-base cursor-pointer flex-1">{type.label}</Label>
                       </div>
                     ))}
                   </RadioGroup>
                   
                   {formData.eventType === "outro" && (
                     <Input
-                      className="mt-2"
+                      className="mt-3 h-11 sm:h-12 text-base"
                       value={formData.customEventType}
                       onChange={(e) => setFormData(prev => ({ ...prev, customEventType: e.target.value }))}
                       placeholder="Especifique o tipo de evento"
@@ -509,46 +519,46 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   )}
                 </div>
 
-                <div>
-                  <Label>Evento Temático? *</Label>
+                <div className="space-y-3">
+                  <Label className="text-sm sm:text-base font-medium">Evento Temático? *</Label>
                   <RadioGroup
                     value={formData.thematic}
                     onValueChange={(value) => setFormData(prev => ({ ...prev, thematic: value, themeDescription: value === 'no' ? '' : prev.themeDescription }))}
-                    className="mt-2"
+                    className="mt-2 space-y-3"
                   >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="yes" id="thematic-yes" />
-                      <Label htmlFor="thematic-yes">Sim</Label>
+                    <div className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="yes" id="thematic-yes" className="w-5 h-5" />
+                      <Label htmlFor="thematic-yes" className="text-sm sm:text-base cursor-pointer flex-1">Sim</Label>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="no" id="thematic-no" />
-                      <Label htmlFor="thematic-no">Não</Label>
+                    <div className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="no" id="thematic-no" className="w-5 h-5" />
+                      <Label htmlFor="thematic-no" className="text-sm sm:text-base cursor-pointer flex-1">Não</Label>
                     </div>
                   </RadioGroup>
                   
                   {formData.thematic === "yes" && (
-                    <div className="mt-4">
-                      <Label htmlFor="themeDescription">Nos fale qual o tema que deseja! *</Label>
+                    <div className="mt-4 space-y-2">
+                      <Label htmlFor="themeDescription" className="text-sm sm:text-base font-medium">Nos fale qual o tema que deseja! *</Label>
                       <Textarea
                         id="themeDescription"
                         value={formData.themeDescription}
                         onChange={(e) => setFormData(prev => ({ ...prev, themeDescription: e.target.value }))}
                         placeholder="Descreva o tema do seu evento (ex: Princesas, Super-heróis, Tropical, etc.)"
-                        className="mt-2"
+                        className="mt-2 text-base min-h-[80px] sm:min-h-[100px]"
                         rows={3}
                       />
                     </div>
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="guestCount">Quantidade de Convidados *</Label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="guestCount" className="text-sm sm:text-base font-medium">Quantidade de Convidados *</Label>
                     <Select
                       value={formData.guestCount}
                       onValueChange={(value) => setFormData(prev => ({ ...prev, guestCount: value }))}
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="h-11 sm:h-12 text-base">
                         <SelectValue placeholder="Selecione" />
                       </SelectTrigger>
                       <SelectContent>
@@ -560,13 +570,14 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                       </SelectContent>
                     </Select>
                   </div>
-                  <div>
-                    <Label htmlFor="eventDate">Data do Evento *</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="eventDate" className="text-sm sm:text-base font-medium">Data do Evento *</Label>
                     <Input
                       id="eventDate"
                       type="date"
                       value={formData.eventDate}
                       onChange={(e) => setFormData(prev => ({ ...prev, eventDate: e.target.value }))}
+                      className="h-11 sm:h-12 text-base"
                     />
                   </div>
                 </div>
@@ -576,33 +587,34 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
             {/* Step 4: Services */}
             {currentStep === 4 && (
               <div className="space-y-6">
-                <div>
-                  <Label>Selecione os serviços desejados *</Label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                <div className="space-y-3">
+                  <Label className="text-sm sm:text-base font-medium">Selecione os serviços desejados *</Label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4">
                     {serviceOptions.map((service) => (
                       <div
                         key={service}
                         onClick={() => toggleService(service)}
-                        className={`p-3 rounded-lg border-2 cursor-pointer transition-smooth ${
+                        className={`p-3 sm:p-4 rounded-lg border-2 cursor-pointer transition-smooth ${
                           formData.services.includes(service)
                             ? "border-charly-pink bg-charly-pink/10"
                             : "border-border hover:border-charly-pink hover:bg-charly-pink/5"
                         }`}
                       >
-                        <span className="text-xs sm:text-sm">{service}</span>
+                        <span className="text-sm sm:text-base">{service}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div>
-                  <Label htmlFor="additionalInfo">Informações Adicionais</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="additionalInfo" className="text-sm sm:text-base font-medium">Informações Adicionais</Label>
                   <Textarea
                     id="additionalInfo"
                     value={formData.additionalInfo}
                     onChange={(e) => setFormData(prev => ({ ...prev, additionalInfo: e.target.value }))}
                     placeholder="Descreva detalhes específicos, cores preferidas, tema específico, etc..."
                     rows={4}
+                    className="text-base min-h-[100px] sm:min-h-[120px]"
                   />
                 </div>
 
@@ -673,32 +685,49 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                    </div>
                    
                    {/* PIX Card */}
-                   <div className="mt-4 bg-gradient-to-r from-green-600/20 to-emerald-600/20 border border-green-500/30 rounded-lg p-4">
-                     <div className="flex items-center space-x-4">
-                       <img 
-                         src="https://www.advocacianunes.com.br/wp-content/uploads/2022/04/logo-pix-icone-1024.png" 
-                         alt="PIX" 
-                         className="w-12 h-12 object-contain"
-                       />
-                       <div className="flex-1">
-                         <p className="font-semibold text-green-100 text-sm mb-1">Chave PIX - Charly Decorações:</p>
-                         <div className="flex items-center space-x-2">
-                           <p className="text-green-200 text-sm font-mono bg-green-900/30 px-3 py-2 rounded border border-green-500/20 flex-1">
-                             11998041534
-                           </p>
+                   <div className="mt-4 bg-gradient-to-br from-green-50/10 to-emerald-50/10 border-2 border-green-400/40 rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                     <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                       <div className="flex items-center space-x-3 w-full sm:w-auto">
+                         <div className="relative">
+                           <img 
+                             src="https://www.advocacianunes.com.br/wp-content/uploads/2022/04/logo-pix-icone-1024.png" 
+                             alt="PIX" 
+                             className="w-12 h-12 sm:w-14 sm:h-14 object-contain flex-shrink-0 drop-shadow-lg"
+                           />
+                           <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                         </div>
+                         <div className="flex-1 sm:flex-none">
+                           <p className="font-bold text-green-100 text-base sm:text-lg mb-1">Chave PIX - Charly Decorações</p>
+                           <p className="text-green-200/80 text-xs">Pagamento instantâneo e seguro</p>
+                         </div>
+                       </div>
+                       
+                       <div className="w-full sm:flex-1">
+                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                           <div className="flex-1 min-w-0">
+                             <div className="bg-gradient-to-r from-green-900/40 to-emerald-900/40 border-2 border-green-400/30 rounded-lg p-3 sm:p-4 shadow-inner backdrop-blur-sm">
+                               <p className="text-green-100 text-base sm:text-lg font-mono font-bold tracking-wider text-center break-all">
+                                 11998041534
+                               </p>
+                             </div>
+                           </div>
                            <button
                              onClick={copyPixKey}
-                             className="flex items-center space-x-1 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs transition-colors"
+                             className={`flex items-center justify-center space-x-3 px-6 py-3 sm:px-8 sm:py-4 rounded-xl font-bold text-base transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl min-w-[140px] sm:min-w-[160px] ${
+                               pixCopied 
+                                 ? 'bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white animate-pulse border-2 border-green-300' 
+                                 : 'bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white hover:shadow-blue-300/50 border-2 border-blue-300/50'
+                             }`}
                            >
                              {pixCopied ? (
                                <>
-                                 <Check className="w-3 h-3" />
-                                 <span>Copiado!</span>
+                                 <Check className="w-5 h-5 sm:w-6 sm:h-6 animate-bounce" />
+                                 <span className="whitespace-nowrap">Copiado!</span>
                                </>
                              ) : (
                                <>
-                                 <Copy className="w-3 h-3" />
-                                 <span>Copiar</span>
+                                 <Copy className="w-5 h-5 sm:w-6 sm:h-6" />
+                                 <span className="whitespace-nowrap">Copiar PIX</span>
                                </>
                              )}
                            </button>
@@ -711,12 +740,12 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 pt-4 sm:pt-6">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center pt-4 sm:pt-6 space-y-3 sm:space-y-0 gap-3 sm:gap-4">
               <Button
                 variant="outline"
                 onClick={prevStep}
                 disabled={currentStep === 1}
-                className="flex items-center justify-center w-full sm:w-auto order-2 sm:order-1"
+                className="flex items-center justify-center w-full sm:w-auto order-2 sm:order-1 py-3 sm:py-2 text-base sm:text-sm font-medium"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Voltar
@@ -727,7 +756,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   variant="hero"
                   onClick={nextStep}
                   disabled={!isStepValid()}
-                  className="flex items-center justify-center w-full sm:w-auto order-1 sm:order-2"
+                  className="flex items-center justify-center w-full sm:w-auto order-1 sm:order-2 py-3 sm:py-2 text-base sm:text-sm font-medium"
                 >
                   Próximo
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -737,7 +766,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   variant="gradient"
                   onClick={sendToWhatsApp}
                   disabled={!isStepValid()}
-                  className="flex items-center justify-center w-full sm:w-auto order-1 sm:order-2"
+                  className="flex items-center justify-center w-full sm:w-auto order-1 sm:order-2 py-3 sm:py-2 text-base sm:text-sm font-medium"
                 >
                   <Send className="w-4 h-4 mr-2" />
                   Enviar Orçamento
