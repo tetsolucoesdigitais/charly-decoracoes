@@ -34,7 +34,7 @@ const About = () => {
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Transformando sonhos em realidade através de decorações únicas e personalizadas. 
-            Há mais de 3 anos criando momentos especiais e memórias inesquecíveis.
+            Há mais de 2 anos criando momentos especiais e memórias inesquecíveis.
           </p>
         </div>
 

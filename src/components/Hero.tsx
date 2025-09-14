@@ -31,7 +31,7 @@ const Hero = () => {
     const timer = setTimeout(() => {
       animateCounter(200, (value) => setStats(prev => ({ ...prev, events: value })));
       animateCounter(100, (value) => setStats(prev => ({ ...prev, satisfaction: value })));
-      animateCounter(3, (value) => setStats(prev => ({ ...prev, experience: value })));
+      animateCounter(2, (value) => setStats(prev => ({ ...prev, experience: value })));
     }, 500);
 
     return () => clearTimeout(timer);

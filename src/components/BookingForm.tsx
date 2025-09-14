@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, Send, User, MapPin, Calendar, Package, Instagram, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Send, User, MapPin, Calendar, Package, Instagram, Star, Copy, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface FormData {
@@ -56,7 +56,44 @@ const BookingForm = () => {
     additionalInfo: "",
   });
   const [showSuccess, setShowSuccess] = useState(false);
+  const [pixCopied, setPixCopied] = useState(false);
   const { toast } = useToast();
+
+  const pixKey = "11998041534";
+
+  const copyPixKey = async () => {
+    try {
+      // Tenta usar a API moderna do clipboard
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(pixKey);
+      } else {
+        // Fallback para contextos não seguros
+        const textArea = document.createElement('textarea');
+        textArea.value = pixKey;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+      }
+      
+      setPixCopied(true);
+      toast({
+        title: "Chave PIX copiada!",
+        description: "A chave PIX foi copiada para sua área de transferência.",
+      });
+      setTimeout(() => setPixCopied(false), 2000);
+    } catch (err) {
+      toast({
+        title: "Erro ao copiar",
+        description: "Não foi possível copiar a chave PIX.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const eventTypes = [
     { value: "aniversario", label: "🎂 Aniversário" },
@@ -74,11 +111,6 @@ const BookingForm = () => {
     "🎁 Personalizados",
     "🌸 Arranjos florais",
     "🧺 Toalhas e tecidos",
-    "💡 Iluminação especial",
-    "🍰 Docinhos temáticos",
-    "🎀 Lembrancinhas",
-    "📸 Fotografia",
-    "🍽️ Buffet",
     "📋 Outro",
   ];
 
@@ -151,13 +183,61 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
   };
 
   const sendToWhatsApp = () => {
+    const validationMessage = getValidationMessage();
+    
+    if (validationMessage) {
+      toast({
+        title: "Campo obrigatório",
+        description: validationMessage,
+        variant: "destructive",
+      });
+      return;
+    }
+    
     const message = formatWhatsAppMessage();
     const whatsappUrl = `https://wa.me/5511980411534?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     setShowSuccess(true);
   };
 
+  const getValidationMessage = () => {
+    switch (currentStep) {
+      case 1:
+        if (!formData.name) return "Preencha o campo Nome para prosseguir";
+        if (!formData.whatsapp) return "Preencha o campo WhatsApp para prosseguir";
+        break;
+      case 2:
+        if (!formData.cep) return "Preencha o campo CEP para prosseguir";
+        if (!formData.address) return "Preencha o campo Endereço para prosseguir";
+        if (!formData.number) return "Preencha o campo Número para prosseguir";
+        if (!formData.city) return "Preencha o campo Cidade para prosseguir";
+        break;
+      case 3:
+        if (!formData.eventType) return "Selecione o Tipo de Evento para prosseguir";
+        if (!formData.thematic) return "Selecione se o evento é temático para prosseguir";
+        if (formData.thematic === 'yes' && !formData.themeDescription.trim()) return "Descreva o tema do evento para prosseguir";
+        if (!formData.guestCount) return "Selecione a Quantidade de Convidados para prosseguir";
+        if (!formData.eventDate) return "Selecione a Data do Evento para prosseguir";
+        break;
+      case 4:
+        if (formData.services.length === 0) return "Selecione uma opção para prosseguir";
+        break;
+    }
+    return null;
+  };
+
   const nextStep = () => {
+    const validationMessage = getValidationMessage();
+    
+    if (validationMessage) {
+      toast({
+        title: "Campo obrigatório",
+        description: validationMessage,
+        variant: "destructive",
+      });
+      return;
+    }
+    
     if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
@@ -506,7 +586,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                         className={`p-3 rounded-lg border-2 cursor-pointer transition-smooth ${
                           formData.services.includes(service)
                             ? "border-charly-pink bg-charly-pink/10"
-                            : "border-border hover:border-charly-pink/50"
+                            : "border-border hover:border-charly-pink hover:bg-charly-pink/5"
                         }`}
                       >
                         <span className="text-xs sm:text-sm">{service}</span>
@@ -527,14 +607,105 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                 </div>
 
                 {/* Budget Summary */}
-                <div className="bg-muted/50 p-4 rounded-lg">
-                  <h3 className="font-semibold mb-2">Resumo do Orçamento:</h3>
-                  <div className="text-sm space-y-1">
-                    <p><strong>Evento:</strong> {eventTypes.find(type => type.value === formData.eventType)?.label || formData.customEventType}</p>
-                    <p><strong>Convidados:</strong> {formData.guestCount}</p>
-                    <p><strong>Data:</strong> {formData.eventDate ? new Date(formData.eventDate).toLocaleDateString('pt-BR') : 'Não informada'}</p>
-                    <p><strong>Serviços:</strong> {formData.services.length} selecionados</p>
-                  </div>
+                <div className="bg-gradient-to-br from-charly-pink/10 to-charly-purple/10 p-6 rounded-xl border border-charly-pink/20">
+                  <h3 className="text-lg font-bold text-charly-pink mb-4 flex items-center">
+                    📋 Resumo do Orçamento
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                     <div className="space-y-2">
+                       <div className="bg-gradient-to-br from-purple-900/80 to-fuchsia-900/80 p-3 rounded-lg border border-purple-700/50">
+                         <p className="font-semibold text-fuchsia-200">Evento:</p>
+                         <p className="text-white">{eventTypes.find(type => type.value === formData.eventType)?.label || formData.customEventType || 'Não informado'}</p>
+                       </div>
+                       <div className="bg-gradient-to-br from-purple-900/80 to-fuchsia-900/80 p-3 rounded-lg border border-purple-700/50">
+                         <p className="font-semibold text-fuchsia-200">Convidados:</p>
+                         <p className="text-white">{formData.guestCount || 'Não informado'}</p>
+                       </div>
+                       <div className="bg-gradient-to-br from-purple-900/80 to-fuchsia-900/80 p-3 rounded-lg border border-purple-700/50">
+                         <p className="font-semibold text-fuchsia-200">Data:</p>
+                         <p className="text-white">{formData.eventDate ? new Date(formData.eventDate).toLocaleDateString('pt-BR') : 'Não informada'}</p>
+                       </div>
+                     </div>
+                     <div className="space-y-2">
+                       <div className="bg-gradient-to-br from-purple-900/80 to-fuchsia-900/80 p-3 rounded-lg border border-purple-700/50">
+                         <p className="font-semibold text-fuchsia-200">Serviços:</p>
+                         <p className="text-white">{formData.services.length} selecionados</p>
+                         {formData.services.length > 0 && (
+                           <div className="mt-2 space-y-1">
+                             {formData.services.slice(0, 3).map((service, index) => (
+                               <p key={index} className="text-xs text-purple-200">• {service}</p>
+                             ))}
+                             {formData.services.length > 3 && (
+                               <p className="text-xs text-purple-200">... e mais {formData.services.length - 3}</p>
+                             )}
+                           </div>
+                         )}
+                       </div>
+                       <div className="bg-gradient-to-br from-purple-900/80 to-fuchsia-900/80 p-3 rounded-lg border border-purple-700/50">
+                         <p className="font-semibold text-fuchsia-200">Endereço:</p>
+                         <p className="text-white text-xs">
+                           {formData.address ? `${formData.address}, ${formData.number}` : 'Não informado'}
+                         </p>
+                         <p className="text-white text-xs">
+                           {formData.neighborhood && formData.city ? `${formData.neighborhood}, ${formData.city}` : ''}
+                         </p>
+                         <p className="text-white text-xs">
+                           {formData.cep ? `CEP: ${formData.cep}` : ''}
+                         </p>
+                       </div>
+                     </div>
+                   </div>
+                  
+                  {/* Payment Info */}
+                   <div className="mt-4 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-lg p-4">
+                     <div className="flex items-start space-x-3">
+                       <div className="text-amber-400 text-lg">💰</div>
+                       <div className="space-y-1">
+                         <p className="font-semibold text-amber-100 text-sm">Informações de Pagamento:</p>
+                         <p className="text-amber-200/90 text-xs leading-relaxed">
+                           Sinal de <span className="font-bold text-amber-100">R$ 200,00</span> para reserva de data e horário.
+                         </p>
+                         <p className="text-amber-200/90 text-xs">
+                           Restante do pagamento: combinamos a melhor forma para você!
+                         </p>
+                       </div>
+                     </div>
+                   </div>
+                   
+                   {/* PIX Card */}
+                   <div className="mt-4 bg-gradient-to-r from-green-600/20 to-emerald-600/20 border border-green-500/30 rounded-lg p-4">
+                     <div className="flex items-center space-x-4">
+                       <img 
+                         src="https://www.advocacianunes.com.br/wp-content/uploads/2022/04/logo-pix-icone-1024.png" 
+                         alt="PIX" 
+                         className="w-12 h-12 object-contain"
+                       />
+                       <div className="flex-1">
+                         <p className="font-semibold text-green-100 text-sm mb-1">Chave PIX - Charly Decorações:</p>
+                         <div className="flex items-center space-x-2">
+                           <p className="text-green-200 text-sm font-mono bg-green-900/30 px-3 py-2 rounded border border-green-500/20 flex-1">
+                             11998041534
+                           </p>
+                           <button
+                             onClick={copyPixKey}
+                             className="flex items-center space-x-1 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-xs transition-colors"
+                           >
+                             {pixCopied ? (
+                               <>
+                                 <Check className="w-3 h-3" />
+                                 <span>Copiado!</span>
+                               </>
+                             ) : (
+                               <>
+                                 <Copy className="w-3 h-3" />
+                                 <span>Copiar</span>
+                               </>
+                             )}
+                           </button>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
                 </div>
               </div>
             )}

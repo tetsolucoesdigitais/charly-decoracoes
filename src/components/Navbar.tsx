@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [portfolioOpen, setPortfolioOpen] = useState(false);
+  const [partnersOpen, setPartnersOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,6 +31,7 @@ const Navbar = () => {
     }
     setIsOpen(false);
     setPortfolioOpen(false);
+    setPartnersOpen(false);
   };
 
   const goToHome = () => {
@@ -85,6 +87,55 @@ const Navbar = () => {
               Pegue Monte
             </a>
             
+            {/* Partners Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setPartnersOpen(!partnersOpen)}
+                className="flex items-center text-foreground hover:text-charly-pink transition-smooth font-medium"
+              >
+                Parceiros
+                <ChevronDown className={cn(
+                  "ml-1 h-4 w-4 transition-transform",
+                  partnersOpen && "rotate-180"
+                )} />
+              </button>
+              
+              {partnersOpen && (
+                <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[180px]">
+                  <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   >
+                    Iluminação especial
+                  </a>
+                  <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   >
+                     Docinhos temáticos
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   >
+                     Lembrancinhas
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   >
+                     Fotografia
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   >
+                     Buffet
+                   </a>
+                </div>
+              )}
+            </div>
+            
             {/* Portfolio Dropdown */}
             <div className="relative">
               <button
@@ -101,15 +152,15 @@ const Navbar = () => {
               {portfolioOpen && (
                 <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[150px]">
                   <a
-                    href="/galeria"
-                    className="block w-full text-left px-4 py-2 text-foreground hover:bg-accent hover:text-charly-pink transition-smooth"
-                  >
+                   href="/galeria"
+                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
                     Imagens
                   </a>
                   <a
-                    href="/videos"
-                    className="block w-full text-left px-4 py-2 text-foreground hover:bg-accent hover:text-charly-pink transition-smooth"
-                  >
+                   href="/videos"
+                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
                     Vídeos
                   </a>
                 </div>
@@ -155,19 +206,53 @@ const Navbar = () => {
               </a>
               
               <div className="px-3 py-1">
+                <div className="text-sm font-medium text-muted-foreground mb-2">Parceiros</div>
+                <a
+                   href="/parceiros"
+                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                   Iluminação especial
+                 </a>
+                 <a
+                   href="/parceiros"
+                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                   Docinhos temáticos
+                 </a>
+                 <a
+                   href="/parceiros"
+                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                   Lembrancinhas
+                 </a>
+                 <a
+                   href="/parceiros"
+                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                   Fotografia
+                 </a>
+                 <a
+                   href="/parceiros"
+                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                   Buffet
+                 </a>
+              </div>
+              
+              <div className="px-3 py-1">
                 <div className="text-sm font-medium text-muted-foreground mb-2">Portfólio</div>
                 <a
-                  href="/galeria"
-                  className="block w-full text-left px-3 py-1 text-foreground hover:text-charly-pink transition-smooth"
-                >
-                  Imagens
-                </a>
-                <a
-                  href="/videos"
-                  className="block w-full text-left px-3 py-1 text-foreground hover:text-charly-pink transition-smooth"
-                >
-                  Vídeos
-                </a>
+                   href="/galeria"
+                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                   Imagens
+                 </a>
+                 <a
+                   href="/videos"
+                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                   Vídeos
+                 </a>
               </div>
             </div>
           </div>

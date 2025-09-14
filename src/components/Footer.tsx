@@ -1,6 +1,32 @@
-import { Heart, Instagram, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Heart, Instagram, Phone, Mail, MapPin, Clock, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Footer = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [hasShownPopup, setHasShownPopup] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const footer = document.querySelector('footer');
+      if (footer && !hasShownPopup) {
+        const footerRect = footer.getBoundingClientRect();
+        const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom > 0;
+        
+        if (isFooterVisible) {
+          setShowPopup(true);
+          setHasShownPopup(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasShownPopup]);
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
     <footer className="relative bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-900 border-t border-charly-pink/20">
       {/* Futuristic background pattern */}
@@ -119,19 +145,9 @@ const Footer = () => {
                     <p>9:00 às 18:00</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <Clock className="w-5 h-5 text-charly-gold mt-0.5 floating" style={{ animationDelay: "2s" }} />
-                  <div className="text-pink-200">
-                    <p className="font-medium">Sábado:</p>
-                    <p>9:00 às 13:15</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Clock className="w-5 h-5 text-charly-gold mt-0.5 floating" style={{ animationDelay: "3s" }} />
-                  <div className="text-pink-200">
-                    <p className="font-medium">Domingo:</p>
-                    <p>9:00 às 15:00</p>
-                  </div>
+                <div className="bg-charly-pink/10 p-3 rounded-lg border border-charly-pink/20">
+                  <p className="text-charly-pink font-medium text-sm">📅 Finais de semana:</p>
+                  <p className="text-pink-200 text-sm">Atendimento apenas por agendamento</p>
                 </div>
               </div>
             </div>
@@ -159,6 +175,45 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Weekend Popup */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
+          <div className="bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-900 rounded-2xl p-8 max-w-md w-full mx-4 border border-charly-pink/30 shadow-2xl animate-in slide-in-from-bottom-4 duration-500">
+            <div className="relative">
+              <button
+                onClick={closePopup}
+                className="absolute -top-2 -right-2 bg-charly-pink/20 hover:bg-charly-pink/40 rounded-full p-2 transition-all duration-300 group"
+              >
+                <X className="w-4 h-4 text-white group-hover:rotate-90 transition-transform" />
+              </button>
+              
+              <div className="text-center space-y-4">
+                <div className="text-4xl mb-4 animate-bounce">🕐</div>
+                <h3 className="text-xl font-bold text-white mb-4">
+                  Horário de Atendimento
+                </h3>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-charly-gold/20">
+                  <p className="text-pink-200 text-sm leading-relaxed">
+                    <span className="text-charly-gold font-semibold">📅 Devido à grande demanda aos finais de semana</span>, não conseguimos responder, mas retornaremos contato no próximo dia útil.
+                  </p>
+                  <p className="text-white font-medium mt-3">
+                    Nos mande sua mensagem pelo formulário de orçamento que ficaremos felizes em atendê-lo(a)! 💖
+                  </p>
+                </div>
+                <div className="flex justify-center mt-6">
+                  <button
+                    onClick={closePopup}
+                    className="bg-gradient-primary hover:scale-105 px-6 py-3 rounded-full text-white font-medium transition-all duration-300 shadow-lg hover:shadow-charly-pink/25"
+                  >
+                    Entendi! ✨
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };
