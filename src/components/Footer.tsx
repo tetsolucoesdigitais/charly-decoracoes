@@ -158,11 +158,19 @@ const Footer = () => {
         <div className="border-t border-charly-pink/20 bg-purple-900/80 backdrop-blur-lg">
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-pink-200 text-center md:text-left">
-                © 2024 Charly Decorações. Todos os direitos reservados. Feito com{" "}
-                <Heart className="inline w-4 h-4 text-charly-pink mx-1" />{" "}
-                para tornar seus momentos especiais.
-              </p>
+              <div className="text-pink-200 text-center md:text-left space-y-2">
+                <p>
+                  © 2025 Charly Decorações. Todos os direitos reservados. Feito com{" "}
+                  <Heart className="inline w-4 h-4 text-charly-pink mx-1" />{" "}
+                  para tornar seus momentos especiais.
+                </p>
+                <p className="text-sm">
+                  Email: <a href="mailto:contato@charlydecoracoes.com.br" className="text-charly-pink hover:text-charly-purple transition-smooth">contato@charlydecoracoes.com.br</a>
+                </p>
+                <p className="text-xs text-pink-300">
+                  Desenvolvido pela <a href="https://www.tetsolucoesdigitais.com.br" target="_blank" rel="noopener noreferrer" className="text-charly-mint hover:text-charly-gold transition-smooth font-medium">TET Soluções Digitais</a>
+                </p>
+              </div>
               <div className="flex items-center space-x-6 text-sm text-pink-200">
                 <a href="#" className="hover:text-charly-pink transition-smooth">
                   Política de Privacidade

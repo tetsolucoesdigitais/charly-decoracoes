@@ -27,7 +27,6 @@ interface FormData {
   customEventType: string;
   thematic: string;
   themeDescription: string;
-  guestCount: string;
   eventDate: string;
   
   // Step 4
@@ -50,7 +49,6 @@ const BookingForm = () => {
     customEventType: "",
     thematic: "",
     themeDescription: "",
-    guestCount: "",
     eventDate: "",
     services: [],
     additionalInfo: "",
@@ -171,7 +169,6 @@ ${formData.complement ? `Complemento: ${formData.complement}` : ''}
 Tipo: ${eventTypeLabel}
 Temático: ${formData.thematic === 'yes' ? 'Sim ✅' : 'Não ❌'}
 ${formData.thematic === 'yes' && formData.themeDescription ? `Tema: ${formData.themeDescription}` : ''}
-Quantidade de Convidados: ${formData.guestCount}
 Data do Evento: ${new Date(formData.eventDate).toLocaleDateString('pt-BR')}
 
 🎨 *SERVIÇOS SOLICITADOS*
@@ -216,7 +213,6 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
         if (!formData.eventType) return "Selecione o Tipo de Evento para prosseguir";
         if (!formData.thematic) return "Selecione se o evento é temático para prosseguir";
         if (formData.thematic === 'yes' && !formData.themeDescription.trim()) return "Descreva o tema do evento para prosseguir";
-        if (!formData.guestCount) return "Selecione a Quantidade de Convidados para prosseguir";
         if (!formData.eventDate) return "Selecione a Data do Evento para prosseguir";
         break;
       case 4:
@@ -257,7 +253,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
         return formData.cep && formData.address && formData.city && formData.number;
       case 3:
         const hasThemeDescription = formData.thematic === 'yes' ? formData.themeDescription.trim() !== '' : true;
-        return formData.eventType && formData.thematic && formData.guestCount && formData.eventDate && hasThemeDescription;
+        return formData.eventType && formData.thematic && formData.eventDate && hasThemeDescription;
       case 4:
         return formData.services.length > 0;
       default:
@@ -328,7 +324,6 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                     customEventType: "",
                     thematic: "",
                     themeDescription: "",
-                    guestCount: "",
                     eventDate: "",
                     services: [],
                     additionalInfo: "",
@@ -551,35 +546,15 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="guestCount" className="text-sm sm:text-base font-medium">Quantidade de Convidados *</Label>
-                    <Select
-                      value={formData.guestCount}
-                      onValueChange={(value) => setFormData(prev => ({ ...prev, guestCount: value }))}
-                    >
-                      <SelectTrigger className="h-11 sm:h-12 text-base">
-                        <SelectValue placeholder="Selecione" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1-20">1 a 20 pessoas</SelectItem>
-                        <SelectItem value="21-50">21 a 50 pessoas</SelectItem>
-                        <SelectItem value="51-100">51 a 100 pessoas</SelectItem>
-                        <SelectItem value="101-200">101 a 200 pessoas</SelectItem>
-                        <SelectItem value="200+">Mais de 200 pessoas</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="eventDate" className="text-sm sm:text-base font-medium">Data do Evento *</Label>
-                    <Input
-                      id="eventDate"
-                      type="date"
-                      value={formData.eventDate}
-                      onChange={(e) => setFormData(prev => ({ ...prev, eventDate: e.target.value }))}
-                      className="h-11 sm:h-12 text-base"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="eventDate" className="text-sm sm:text-base font-medium">Data do Evento *</Label>
+                  <Input
+                    id="eventDate"
+                    type="date"
+                    value={formData.eventDate}
+                    onChange={(e) => setFormData(prev => ({ ...prev, eventDate: e.target.value }))}
+                    className="h-11 sm:h-12 text-base"
+                  />
                 </div>
               </div>
             )}
@@ -629,10 +604,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                          <p className="font-semibold text-fuchsia-200">Evento:</p>
                          <p className="text-white">{eventTypes.find(type => type.value === formData.eventType)?.label || formData.customEventType || 'Não informado'}</p>
                        </div>
-                       <div className="bg-gradient-to-br from-purple-900/80 to-fuchsia-900/80 p-3 rounded-lg border border-purple-700/50">
-                         <p className="font-semibold text-fuchsia-200">Convidados:</p>
-                         <p className="text-white">{formData.guestCount || 'Não informado'}</p>
-                       </div>
+
                        <div className="bg-gradient-to-br from-purple-900/80 to-fuchsia-900/80 p-3 rounded-lg border border-purple-700/50">
                          <p className="font-semibold text-fuchsia-200">Data:</p>
                          <p className="text-white">{formData.eventDate ? new Date(formData.eventDate).toLocaleDateString('pt-BR') : 'Não informada'}</p>
