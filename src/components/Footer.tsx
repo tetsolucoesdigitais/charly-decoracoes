@@ -156,30 +156,41 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-charly-pink/20 bg-purple-900/80 backdrop-blur-lg">
-          <div className="container mx-auto px-4 py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="text-pink-200 text-center md:text-left space-y-2">
-                <p>
+          <div className="container mx-auto px-4 py-8 pb-20 md:pb-8">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0">
+              <div className="text-pink-200 text-center lg:text-left space-y-3 flex-1">
+                <p className="text-base">
                   © 2025 Charly Decorações. Todos os direitos reservados. Feito com{" "}
                   <Heart className="inline w-4 h-4 text-charly-pink mx-1" />{" "}
                   para tornar seus momentos especiais.
                 </p>
                 <p className="text-sm">
-                  Email: <a href="mailto:contato@charlydecoracoes.com.br" className="text-charly-pink hover:text-charly-purple transition-smooth">contato@charlydecoracoes.com.br</a>
+                  Email: <a href="mailto:contato@charlydecoracoes.com.br" className="text-charly-pink hover:text-charly-purple transition-smooth font-medium">contato@charlydecoracoes.com.br</a>
                 </p>
                 <p className="text-xs text-pink-300">
                   Desenvolvido pela <a href="https://www.tetsolucoesdigitais.com.br" target="_blank" rel="noopener noreferrer" className="text-charly-mint hover:text-charly-gold transition-smooth font-medium">TET Soluções Digitais</a>
                 </p>
               </div>
-              <div className="flex items-center space-x-6 text-sm text-pink-200">
-                <a href="#" className="hover:text-charly-pink transition-smooth">
-                  Política de Privacidade
+              
+              {/* Links Section */}
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-sm text-pink-200 lg:flex-shrink-0">
+                <a 
+                  href="/politica-privacidade" 
+                  className="bg-purple-800/50 hover:bg-purple-700/60 px-4 py-2 rounded-full hover:text-charly-pink transition-all duration-300 border border-purple-600/30 hover:border-charly-pink/50 font-medium"
+                >
+                  📋 Política de Privacidade
                 </a>
-                <a href="#" className="hover:text-charly-pink transition-smooth">
-                  Termos de Uso
+                <a 
+                  href="/termos-uso" 
+                  className="bg-purple-800/50 hover:bg-purple-700/60 px-4 py-2 rounded-full hover:text-charly-pink transition-all duration-300 border border-purple-600/30 hover:border-charly-pink/50 font-medium"
+                >
+                  📄 Termos de Uso
                 </a>
               </div>
             </div>
+            
+            {/* Extra spacing for mobile floating buttons */}
+            <div className="block md:hidden h-4"></div>
           </div>
         </div>
       </div>

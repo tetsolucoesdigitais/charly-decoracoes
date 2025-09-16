@@ -1,49 +1,29 @@
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "Maria Silva",
-      event: "Casamento",
+      name: "Natália",
+      event: "Evento Especial",
       rating: 5,
-      comment: "A Charly superou todas as nossas expectativas! A decoração do nosso casamento ficou simplesmente perfeita. Cada detalhe foi pensado com muito carinho.",
-      image: "👰"
+      comment: "Experiência incrível com a Charly Decorações! Superou todas as expectativas.",
+      image: "https://i.imgur.com/UlSGhfZ.jpeg"
     },
     {
-      name: "João Santos",
-      event: "Aniversário 50 anos",
+      name: "Andreia",
+      event: "Celebração",
       rating: 5,
-      comment: "Profissionalismo exemplar! A festa de 50 anos da minha esposa ficou incrível. Todos os convidados elogiaram a decoração elegante e sofisticada.",
-      image: "🎂"
+      comment: "Profissionalismo e qualidade excepcionais. Recomendo para todos!",
+      image: "https://i.imgur.com/QF5wEeY.jpeg"
     },
     {
-      name: "Ana Oliveira",
-      event: "Festa Infantil",
+      name: "Paola",
+      event: "Festa Temática",
       rating: 5,
-      comment: "Minha filha ficou encantada! A decoração temática foi perfeita, com todos os detalhes que ela sonhava. A Charly tem um talento especial.",
-      image: "👶"
-    },
-    {
-      name: "Carlos Ferreira",
-      event: "Evento Corporativo",
-      rating: 5,
-      comment: "Evento corporativo impecável! A decoração estava alinhada com nossa marca e causou uma excelente impressão em todos os participantes.",
-      image: "👨‍💼"
-    },
-    {
-      name: "Lucia Costa",
-      event: "15 Anos",
-      rating: 5,
-      comment: "O sonho da minha filha se tornou realidade! A festa de 15 anos ficou mágica, como se fosse um conto de fadas. Gratidão eterna à equipe Charly.",
-      image: "👸"
-    },
-    {
-      name: "Roberto Lima",
-      event: "Bodas de Ouro",
-      rating: 5,
-      comment: "50 anos de casados celebrados com uma decoração emocionante. A Charly conseguiu capturar toda a nossa história de amor nos detalhes.",
-      image: "💒"
+      comment: "Decoração perfeita e atendimento impecável. Muito obrigada!",
+      image: "https://i.imgur.com/XUeaboX.jpeg"
     }
   ];
 
@@ -63,30 +43,65 @@ const Testimonials = () => {
       </div>
 
       <div className="relative">
-        <div className="flex testimonials-scroll gap-6 py-4">
+        <div className="flex testimonials-scroll testimonials-scroll-mobile gap-6 py-4">
           {duplicatedTestimonials.map((testimonial, index) => (
-            <Card key={index} className="flex-shrink-0 w-80 card-shadow hover:card-elegant transition-smooth bg-fuchsia-600/20 border-fuchsia-500/30">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="text-3xl">{testimonial.image}</div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h4 className="font-semibold text-charly-pink">{testimonial.name}</h4>
-                      <Quote className="w-4 h-4 text-charly-gold" />
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <Card className="flex-shrink-0 w-80 card-shadow hover:card-elegant transition-smooth bg-fuchsia-600/20 border-fuchsia-500/30 cursor-pointer group">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-charly-pink/30 group-hover:border-charly-pink transition-all duration-300">
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="font-bold text-charly-pink text-lg group-hover:scale-105 transition-transform duration-300 cursor-pointer">
+                            {testimonial.name}
+                          </h4>
+                          <Quote className="w-4 h-4 text-charly-gold" />
+                        </div>
+                        <p className="text-sm text-muted-foreground">{testimonial.event}</p>
+                        <div className="flex gap-1 mt-2">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-charly-gold text-charly-gold" />
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-sm text-muted-foreground">{testimonial.event}</p>
-                    <div className="flex gap-1 mt-2">
+                    <p className="text-sm text-foreground leading-relaxed">
+                      "{testimonial.comment}"
+                    </p>
+                  </CardContent>
+                </Card>
+              </DialogTrigger>
+              
+              <DialogContent className="bg-card/95 backdrop-blur-xl border-charly-pink/20 max-w-md aspect-[9/16] p-0 overflow-hidden">
+                <div className="relative w-full h-full">
+                  <img
+                    src={testimonial.image}
+                    alt={`Depoimento de ${testimonial.name}`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
+                    <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                      {testimonial.name}
+                    </h3>
+                    <p className="text-white/90 text-sm drop-shadow-md">
+                      "{testimonial.comment}"
+                    </p>
+                    <div className="flex gap-1 mt-3">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-charly-gold text-charly-gold" />
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 drop-shadow-sm" />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-sm text-foreground leading-relaxed">
-                  "{testimonial.comment}"
-                </p>
-              </CardContent>
-            </Card>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
         

@@ -211,6 +211,10 @@
   
   /* Mobile faster scroll */
   @media (max-width: 768px) {
+    .testimonials-scroll-mobile {
+      animation: scroll-horizontal 8s linear infinite;
+    }
+    
     .testimonials-scroll {
       animation: scroll-horizontal 12s linear infinite;
     }

@@ -8,6 +8,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [portfolioOpen, setPortfolioOpen] = useState(false);
   const [partnersOpen, setPartnersOpen] = useState(false);
+  const [mobilePortfolioOpen, setMobilePortfolioOpen] = useState(false);
+  const [mobilePartnersOpen, setMobilePartnersOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -206,53 +208,79 @@ const Navbar = () => {
               </a>
               
               <div className="px-3 py-1">
-                <div className="text-sm font-medium text-muted-foreground mb-2">Parceiros</div>
-                <a
-                   href="/parceiros"
-                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                   Iluminação especial
-                 </a>
-                 <a
-                   href="/parceiros"
-                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                   Docinhos temáticos
-                 </a>
-                 <a
-                   href="/parceiros"
-                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                   Lembrancinhas
-                 </a>
-                 <a
-                   href="/parceiros"
-                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                   Fotografia
-                 </a>
-                 <a
-                   href="/parceiros"
-                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                   Buffet
-                 </a>
+                <button
+                  onClick={() => setMobilePartnersOpen(!mobilePartnersOpen)}
+                  className="flex items-center justify-between w-full text-left text-sm font-medium text-muted-foreground mb-2 hover:text-charly-pink transition-smooth"
+                >
+                  Parceiros
+                  <ChevronDown className={cn(
+                    "h-4 w-4 transition-transform",
+                    mobilePartnersOpen && "rotate-180"
+                  )} />
+                </button>
+                {mobilePartnersOpen && (
+                  <div className="space-y-1 ml-2">
+                    <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Iluminação especial
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Docinhos temáticos
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Lembrancinhas
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Fotografia
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Buffet
+                     </a>
+                  </div>
+                )}
               </div>
               
               <div className="px-3 py-1">
-                <div className="text-sm font-medium text-muted-foreground mb-2">Portfólio</div>
-                <a
-                   href="/galeria"
-                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                   Imagens
-                 </a>
-                 <a
-                   href="/videos"
-                   className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                   Vídeos
-                 </a>
+                <button
+                  onClick={() => setMobilePortfolioOpen(!mobilePortfolioOpen)}
+                  className="flex items-center justify-between w-full text-left text-sm font-medium text-muted-foreground mb-2 hover:text-charly-pink transition-smooth"
+                >
+                  Portfólio
+                  <ChevronDown className={cn(
+                    "h-4 w-4 transition-transform",
+                    mobilePortfolioOpen && "rotate-180"
+                  )} />
+                </button>
+                {mobilePortfolioOpen && (
+                  <div className="space-y-1 ml-2">
+                    <a
+                       href="/galeria"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Imagens
+                     </a>
+                     <a
+                       href="/videos"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Vídeos
+                     </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>

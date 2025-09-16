@@ -100,7 +100,7 @@ const Partners = () => {
               Junte-se à nossa rede de parceiros e faça parte dos eventos mais especiais da região!
             </p>
             <button 
-              onClick={() => window.open('https://wa.me/5511998041534?text=Olá! Gostaria de saber mais sobre como me tornar um parceiro da Charly Decorações.', '_blank')}
+              onClick={() => window.open('https://wa.me/551198041534?text=Olá! Gostaria de saber mais sobre como me tornar um parceiro da Charly Decorações.', '_blank')}
               className="bg-charly-pink text-white px-8 py-3 rounded-lg hover:bg-charly-pink/90 transition-colors font-medium hover:scale-105 transform duration-200"
             >
               Entre em Contato

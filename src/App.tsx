@@ -8,6 +8,8 @@ import Gallery from "./pages/Gallery";
 import Videos from "./pages/Videos";
 import PegueEMonte from "./pages/PegueEMonte";
 import Partners from "./pages/Partners";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/videos" element={<Videos />} />
           <Route path="/pegue-monte" element={<PegueEMonte />} />
           <Route path="/parceiros" element={<Partners />} />
+          <Route path="/politica-privacidade" element={<PrivacyPolicy />} />
+          <Route path="/termos-uso" element={<TermsOfService />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
