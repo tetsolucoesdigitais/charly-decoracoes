@@ -48,7 +48,7 @@ const Index = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-gray-900/90 backdrop-blur-sm text-charly-pink border border-charly-pink/30 p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-800/90 transition-all duration-300 z-50 flex items-center gap-2 text-xs sm:text-sm"
+          className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 bg-gray-900/90 backdrop-blur-sm text-charly-pink border border-charly-pink/30 p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-800/90 transition-all duration-300 z-50 flex items-center gap-2 text-xs sm:text-sm"
           aria-label="Voltar para o topo"
         >
           <PartyPopper className="w-4 h-4 sm:w-5 sm:h-5" />
