@@ -265,7 +265,7 @@ const PegueEMonte = () => {
                           ) : (
                             <div className="relative aspect-[9/16] bg-black rounded-lg overflow-hidden">
                               <img
-                                src={item.thumbnail}
+                                src={item.url}
                                 alt={item.title}
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                               />
@@ -321,7 +321,7 @@ const PegueEMonte = () => {
                             src={item.url}
                             controls
                             className="w-full h-full object-cover"
-                            poster={item.thumbnail}
+                            poster={item.url}
                           >
                             Seu navegador não suporta o elemento de vídeo.
                           </video>

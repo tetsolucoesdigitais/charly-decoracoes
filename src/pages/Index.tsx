@@ -6,6 +6,7 @@ import About from "@/components/About";
 import BookingForm from "@/components/BookingForm";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 import { PartyPopper } from "lucide-react";
 
 const Index = () => {
@@ -56,6 +57,9 @@ const Index = () => {
           <span className="font-medium sm:hidden">Topo</span>
         </button>
       )}
+      
+      {/* Chat Widget */}
+      <ChatWidget />
     </div>
   );
 };
