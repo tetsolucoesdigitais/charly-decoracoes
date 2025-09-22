@@ -40,7 +40,7 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://educoelhon8n.app.n8n.cloud/webhook/charly", {
+      const response = await fetch("https://educoelhon8n.app.n8n.cloud/webhook-test/charly", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
