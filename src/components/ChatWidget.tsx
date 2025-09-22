@@ -56,29 +56,15 @@ export default function ChatWidget() {
       console.log("Resposta do n8n:", data);
 
       if (response.ok) {
-        // Se o n8n retornou uma resposta específica, use ela
-        if (data.response) {
-          const botMessage: Message = {
-            id: (Date.now() + 1).toString(),
-            text: data.response,
-            isUser: false,
-            timestamp: new Date()
-          };
-          setMessages(prev => [...prev, botMessage]);
-        } else {
-          // Se só confirmou recebimento, aguarda um pouco e mostra mensagem padrão
-          setTimeout(() => {
-            const botMessage: Message = {
-              id: (Date.now() + 1).toString(),
-              text: "Obrigado pela sua mensagem! Nossa equipe está analisando e retornará em breve. Para atendimento imediato, entre em contato pelo WhatsApp (11) 9 8041-1534.",
-              isUser: false,
-              timestamp: new Date()
-            };
-            setMessages(prev => [...prev, botMessage]);
-            setIsLoading(false);
-          }, 1500);
-          return; // Sai da função para evitar o setIsLoading(false) no final
-        }
+        // Usa a resposta do webhook diretamente
+        const responseText = data.response || data.message || "Resposta recebida do servidor";
+        const botMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          text: responseText,
+          isUser: false,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, botMessage]);
       } else {
         throw new Error("Erro na resposta do servidor");
       }
