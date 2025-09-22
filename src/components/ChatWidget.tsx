@@ -52,15 +52,33 @@ export default function ChatWidget() {
         }),
       });
 
+      const data = await response.json();
+      console.log("Resposta do n8n:", data);
+
       if (response.ok) {
-        const data = await response.json();
-        const botMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          text: data.response || "Desculpe, não consegui processar sua mensagem no momento.",
-          isUser: false,
-          timestamp: new Date()
-        };
-        setMessages(prev => [...prev, botMessage]);
+        // Se o n8n retornou uma resposta específica, use ela
+        if (data.response) {
+          const botMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            text: data.response,
+            isUser: false,
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, botMessage]);
+        } else {
+          // Se só confirmou recebimento, aguarda um pouco e mostra mensagem padrão
+          setTimeout(() => {
+            const botMessage: Message = {
+              id: (Date.now() + 1).toString(),
+              text: "Obrigado pela sua mensagem! Nossa equipe está analisando e retornará em breve. Para atendimento imediato, entre em contato pelo WhatsApp (11) 9 8041-1534.",
+              isUser: false,
+              timestamp: new Date()
+            };
+            setMessages(prev => [...prev, botMessage]);
+            setIsLoading(false);
+          }, 1500);
+          return; // Sai da função para evitar o setIsLoading(false) no final
+        }
       } else {
         throw new Error("Erro na resposta do servidor");
       }
