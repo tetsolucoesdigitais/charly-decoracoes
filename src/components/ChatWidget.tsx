@@ -40,8 +40,8 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      // Primeira tentativa: POST com JSON
-      let response = await fetch("https://educoelhon8n.app.n8n.cloud/webhook-test/afcc1910-de96-4930-8076-06e71ef04434", {
+      // Primeira tentativa: POST com JSON (URL de produção)
+      let response = await fetch("https://educoelhon8n.app.n8n.cloud/webhook/afcc1910-de96-4930-8076-06e71ef04434", {
         method: "POST",
         mode: "cors",
         headers: {
@@ -102,7 +102,7 @@ export default function ChatWidget() {
       if (error?.message?.includes("fetch") || error?.name === "TypeError") {
         try {
           console.log("Tentando fallback sem Content-Type...");
-          const fallbackResponse = await fetch("https://educoelhon8n.app.n8n.cloud/webhook-test/afcc1910-de96-4930-8076-06e71ef04434", {
+          const fallbackResponse = await fetch("https://educoelhon8n.app.n8n.cloud/webhook/afcc1910-de96-4930-8076-06e71ef04434", {
             method: "POST",
             mode: "cors",
             body: userMessage.text,
@@ -128,9 +128,18 @@ export default function ChatWidget() {
         }
       }
 
+      // Mensagem de erro personalizada baseada no tipo de erro
+      const botMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "Desculpe, estou com problemas de conexão. Verifique se o webhook n8n está ativo em modo de produção.",
+        isUser: false,
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, botMessage]);
+
       toast({
         title: "Erro de Conexão",
-        description: "Verifique se o webhook n8n está ativo e configurado para CORS.",
+        description: "Webhook n8n: ative o workflow e use URL de produção (/webhook/ em vez de /webhook-test/)",
         variant: "destructive",
       });
     } finally {
