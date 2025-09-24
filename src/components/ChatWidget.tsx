@@ -42,8 +42,10 @@ export default function ChatWidget() {
     try {
       const response = await fetch("https://educoelhon8n.app.n8n.cloud/webhook-test/afcc1910-de96-4930-8076-06e71ef04434", {
         method: "POST",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify({
           message: userMessage.text,
