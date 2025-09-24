@@ -54,12 +54,33 @@ export default function ChatWidget() {
         }),
       });
 
-      const data = await response.json();
-      console.log("Resposta do n8n:", data);
+      const contentType = response.headers.get("content-type") ?? "";
 
       if (response.ok) {
-        // Usa a resposta do webhook diretamente
-        const responseText = data.response || data.message || "Resposta recebida do servidor";
+        let responseText = "ok";
+
+        if (contentType.includes("application/json")) {
+          // Lê como texto primeiro para evitar erro de JSON vazio
+          const raw = await response.text();
+          try {
+            const data = raw ? JSON.parse(raw) : null as any;
+            responseText =
+              (data?.response as string) ||
+              (data?.message as string) ||
+              (data?.output as string) ||
+              (data?.text as string) ||
+              (typeof data === "string" ? data : raw) ||
+              "ok";
+          } catch {
+            responseText = raw || "ok";
+          }
+        } else {
+          // Texto puro ou outras content-types
+          responseText = (await response.text()).trim() || "ok";
+        }
+
+        console.log("Resposta do n8n (texto):", responseText);
+
         const botMessage: Message = {
           id: (Date.now() + 1).toString(),
           text: responseText,
