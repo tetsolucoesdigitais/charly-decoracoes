@@ -40,12 +40,13 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://educoelhon8n.app.n8n.cloud/webhook-test/afcc1910-de96-4930-8076-06e71ef04434", {
+      // Primeira tentativa: POST com JSON
+      let response = await fetch("https://educoelhon8n.app.n8n.cloud/webhook-test/afcc1910-de96-4930-8076-06e71ef04434", {
         method: "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          "Accept": "application/json, text/plain, */*",
         },
         body: JSON.stringify({
           message: userMessage.text,
@@ -60,7 +61,6 @@ export default function ChatWidget() {
         let responseText = "ok";
 
         if (contentType.includes("application/json")) {
-          // Lê como texto primeiro para evitar erro de JSON vazio
           const raw = await response.text();
           try {
             const data = raw ? JSON.parse(raw) : null as any;
@@ -75,11 +75,10 @@ export default function ChatWidget() {
             responseText = raw || "ok";
           }
         } else {
-          // Texto puro ou outras content-types
           responseText = (await response.text()).trim() || "ok";
         }
 
-        console.log("Resposta do n8n (texto):", responseText);
+        console.log("Resposta do n8n:", responseText);
 
         const botMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -89,21 +88,49 @@ export default function ChatWidget() {
         };
         setMessages(prev => [...prev, botMessage]);
       } else {
-        throw new Error("Erro na resposta do servidor");
+        console.error("Erro HTTP:", response.status, response.statusText);
+        toast({
+          title: "Erro",
+          description: `Erro do servidor: ${response.status}`,
+          variant: "destructive",
+        });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro ao enviar mensagem:", error);
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: "Desculpe, ocorreu um erro. Tente novamente em alguns instantes.",
-        isUser: false,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, errorMessage]);
       
+      // Fallback: Se der erro de CORS/fetch, tenta sem Content-Type
+      if (error?.message?.includes("fetch") || error?.name === "TypeError") {
+        try {
+          console.log("Tentando fallback sem Content-Type...");
+          const fallbackResponse = await fetch("https://educoelhon8n.app.n8n.cloud/webhook-test/afcc1910-de96-4930-8076-06e71ef04434", {
+            method: "POST",
+            mode: "cors",
+            body: userMessage.text,
+          });
+
+          if (fallbackResponse.ok) {
+            const responseText = (await fallbackResponse.text()).trim() || "ok";
+            console.log("Resposta do n8n (fallback):", responseText);
+
+            const botMessage: Message = {
+              id: (Date.now() + 1).toString(),
+              text: responseText,
+              isUser: false,
+              timestamp: new Date()
+            };
+
+            setMessages(prev => [...prev, botMessage]);
+            setIsLoading(false);
+            return;
+          }
+        } catch (fallbackError) {
+          console.error("Fallback também falhou:", fallbackError);
+        }
+      }
+
       toast({
-        title: "Erro no chat",
-        description: "Não foi possível enviar a mensagem. Tente novamente.",
+        title: "Erro de Conexão",
+        description: "Verifique se o webhook n8n está ativo e configurado para CORS.",
         variant: "destructive",
       });
     } finally {
