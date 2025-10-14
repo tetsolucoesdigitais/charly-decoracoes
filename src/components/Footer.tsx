@@ -28,12 +28,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-900 border-t border-charly-pink/20">
-      {/* Futuristic background pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-charly-pink rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-charly-purple rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-charly-mint rounded-full blur-3xl"></div>
+    <footer className="relative border-t border-charly-pink/20" style={{ backgroundColor: '#4c1f4b' }}>
+      {/* Efeito estelar */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '10%', left: '15%', boxShadow: '0 0 2px #fff' }}></div>
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '20%', left: '40%', boxShadow: '0 0 2px #fff', animationDelay: '0.5s' }}></div>
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '30%', left: '70%', boxShadow: '0 0 2px #fff', animationDelay: '1s' }}></div>
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '50%', left: '25%', boxShadow: '0 0 2px #fff', animationDelay: '1.5s' }}></div>
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '60%', left: '80%', boxShadow: '0 0 2px #fff', animationDelay: '2s' }}></div>
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '75%', left: '50%', boxShadow: '0 0 2px #fff', animationDelay: '2.5s' }}></div>
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '85%', left: '10%', boxShadow: '0 0 2px #fff', animationDelay: '3s' }}></div>
+        <div className="absolute w-1 h-1 bg-white rounded-full animate-pulse" style={{ top: '15%', left: '90%', boxShadow: '0 0 2px #fff', animationDelay: '0.3s' }}></div>
+        <div className="absolute w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ top: '40%', left: '60%', boxShadow: '0 0 3px #fff', animationDelay: '1.2s' }}></div>
+        <div className="absolute w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ top: '70%', left: '35%', boxShadow: '0 0 3px #fff', animationDelay: '2.2s' }}></div>
       </div>
 
       <div className="relative z-10">
@@ -42,17 +49,13 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center">
                 <img 
                    src="https://i.imgur.com/9wU7G0V.png" 
                    alt="Charly Decorações" 
                    className="h-20 w-auto floating hover:scale-110 transition-transform cursor-pointer"
                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                  />
-                <div>
-                  <h3 className="text-2xl font-bold text-gradient-primary">Charly</h3>
-                  <p className="text-charly-gold font-light">Decorações</p>
-                </div>
               </div>
               <p className="text-muted-foreground">
                 Transformando seus sonhos em realidade com decorações únicas e inesquecíveis para todos os tipos de eventos.
