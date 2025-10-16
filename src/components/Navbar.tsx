@@ -100,20 +100,6 @@ const Navbar = () => {
               )}
             </div>
             
-            <button
-              onClick={() => scrollToSection("booking")}
-              className="text-foreground hover:text-charly-pink transition-smooth font-medium"
-            >
-              Contato
-            </button>
-            
-            <a
-              href="/pegue-monte"
-              className="text-foreground hover:text-charly-pink transition-smooth font-medium"
-            >
-              Pegue Monte
-            </a>
-            
             {/* Partners Dropdown */}
             <div className="relative">
               <button
@@ -162,6 +148,20 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+            
+            <button
+              onClick={() => scrollToSection("booking")}
+              className="text-foreground hover:text-charly-pink transition-smooth font-medium"
+            >
+              Contato
+            </button>
+            
+            <a
+              href="/pegue-monte"
+              className="text-foreground hover:text-charly-pink transition-smooth font-medium"
+            >
+              Pegue Monte
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -216,20 +216,6 @@ const Navbar = () => {
                 )}
               </div>
               
-              <button
-                onClick={() => scrollToSection("booking")}
-                className="block w-full text-left px-3 py-2 text-foreground hover:text-charly-pink transition-smooth font-medium"
-              >
-                Contato
-              </button>
-              
-              <a
-                href="/pegue-monte"
-                className="block w-full text-left px-3 py-2 text-foreground hover:text-charly-pink transition-smooth font-medium"
-              >
-                Pegue Monte
-              </a>
-              
               <div className="px-3 py-1">
                 <button
                   onClick={() => setMobilePartnersOpen(!mobilePartnersOpen)}
@@ -276,6 +262,20 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+              
+              <button
+                onClick={() => scrollToSection("booking")}
+                className="block w-full text-left px-3 py-2 text-foreground hover:text-charly-pink transition-smooth font-medium"
+              >
+                Contato
+              </button>
+              
+              <a
+                href="/pegue-monte"
+                className="block w-full text-left px-3 py-2 text-foreground hover:text-charly-pink transition-smooth font-medium"
+              >
+                Pegue Monte
+              </a>
             </div>
           </div>
         )}
