@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
@@ -6,27 +5,9 @@ import About from "@/components/About";
 import BookingForm from "@/components/BookingForm";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget";
-import { PartyPopper } from "lucide-react";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   return (
     <div className="min-h-screen">
@@ -45,21 +26,8 @@ const Index = () => {
         <Footer />
       </div>
       
-      {/* Botão flutuante de scroll para o topo */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 bg-gray-900/90 backdrop-blur-sm text-charly-pink border border-charly-pink/30 p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl hover:bg-gray-800/90 transition-all duration-300 z-50 flex items-center gap-2 text-xs sm:text-sm"
-          aria-label="Voltar para o topo"
-        >
-          <PartyPopper className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="font-medium hidden sm:inline">Voltar para o topo</span>
-          <span className="font-medium sm:hidden">Topo</span>
-        </button>
-      )}
-      
-      {/* Chat Widget */}
-      <ChatWidget />
+      {/* Back to Top Button */}
+      <BackToTop />
     </div>
   );
 };

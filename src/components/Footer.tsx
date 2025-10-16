@@ -206,6 +206,7 @@ const Footer = () => {
               <button
                 onClick={closePopup}
                 className="absolute -top-2 -right-2 bg-charly-pink/20 hover:bg-charly-pink/40 rounded-full p-2 transition-all duration-300 group"
+                aria-label="Fechar"
               >
                 <X className="w-4 h-4 text-white group-hover:rotate-90 transition-transform" />
               </button>

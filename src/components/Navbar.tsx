@@ -56,14 +56,8 @@ const Navbar = () => {
             <img 
               src="https://i.imgur.com/9wU7G0V.png" 
               alt="Charly Decorações" 
-              className="h-16 w-auto mr-3 group-hover:scale-110 transition-transform"
+              className="h-24 w-auto group-hover:scale-110 transition-transform"
             />
-            <div className="text-2xl font-bold text-gradient-primary group-hover:scale-110 transition-smooth">
-              Charly
-            </div>
-            <div className="ml-2 text-lg text-charly-gold font-light">
-              Decorações
-            </div>
           </div>
 
           {/* Desktop Menu */}
@@ -74,6 +68,37 @@ const Navbar = () => {
             >
               Sobre
             </button>
+            
+            {/* Portfolio Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setPortfolioOpen(!portfolioOpen)}
+                className="flex items-center text-foreground hover:text-charly-pink transition-smooth font-medium"
+              >
+                Portfólio
+                <ChevronDown className={cn(
+                  "ml-1 h-4 w-4 transition-transform",
+                  portfolioOpen && "rotate-180"
+                )} />
+              </button>
+              
+              {portfolioOpen && (
+                <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[150px]">
+                  <a
+                   href="/galeria"
+                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                    Imagens
+                  </a>
+                  <a
+                   href="/videos"
+                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                 >
+                    Vídeos
+                  </a>
+                </div>
+              )}
+            </div>
             
             <button
               onClick={() => scrollToSection("booking")}
@@ -137,37 +162,6 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            
-            {/* Portfolio Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setPortfolioOpen(!portfolioOpen)}
-                className="flex items-center text-foreground hover:text-charly-pink transition-smooth font-medium"
-              >
-                Portfólio
-                <ChevronDown className={cn(
-                  "ml-1 h-4 w-4 transition-transform",
-                  portfolioOpen && "rotate-180"
-                )} />
-              </button>
-              
-              {portfolioOpen && (
-                <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[150px]">
-                  <a
-                   href="/galeria"
-                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                    Imagens
-                  </a>
-                  <a
-                   href="/videos"
-                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
-                 >
-                    Vídeos
-                  </a>
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -192,6 +186,35 @@ const Navbar = () => {
               >
                 Sobre
               </button>
+              
+              <div className="px-3 py-1">
+                <button
+                  onClick={() => setMobilePortfolioOpen(!mobilePortfolioOpen)}
+                  className="flex items-center justify-between w-full text-left text-sm font-medium text-muted-foreground mb-2 hover:text-charly-pink transition-smooth"
+                >
+                  Portfólio
+                  <ChevronDown className={cn(
+                    "h-4 w-4 transition-transform",
+                    mobilePortfolioOpen && "rotate-180"
+                  )} />
+                </button>
+                {mobilePortfolioOpen && (
+                  <div className="space-y-1 ml-2">
+                    <a
+                       href="/galeria"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Imagens
+                     </a>
+                     <a
+                       href="/videos"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Vídeos
+                     </a>
+                  </div>
+                )}
+              </div>
               
               <button
                 onClick={() => scrollToSection("booking")}
@@ -249,35 +272,6 @@ const Navbar = () => {
                        className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
                      >
                        Buffet
-                     </a>
-                  </div>
-                )}
-              </div>
-              
-              <div className="px-3 py-1">
-                <button
-                  onClick={() => setMobilePortfolioOpen(!mobilePortfolioOpen)}
-                  className="flex items-center justify-between w-full text-left text-sm font-medium text-muted-foreground mb-2 hover:text-charly-pink transition-smooth"
-                >
-                  Portfólio
-                  <ChevronDown className={cn(
-                    "h-4 w-4 transition-transform",
-                    mobilePortfolioOpen && "rotate-180"
-                  )} />
-                </button>
-                {mobilePortfolioOpen && (
-                  <div className="space-y-1 ml-2">
-                    <a
-                       href="/galeria"
-                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
-                     >
-                       Imagens
-                     </a>
-                     <a
-                       href="/videos"
-                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
-                     >
-                       Vídeos
                      </a>
                   </div>
                 )}

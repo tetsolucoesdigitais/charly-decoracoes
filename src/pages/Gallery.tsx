@@ -15,45 +15,185 @@ const Gallery = () => {
   const images = [
     {
       id: 1,
-      url: "https://i.imgur.com/gc03bfC.png",
-      title: "Festa Infantil",
+      url: "https://i.imgur.com/pMfOlY1.jpeg",
+      title: "Decoração Especial",
       category: "Infantil",
-      description: "Decoração mágica e colorida para crianças"
+      description: "Decoração encantadora e temática"
     },
     {
       id: 2,
-      url: "https://i.imgur.com/WYvvRrU.png",
-      title: "Festa Infantil",
+      url: "https://i.imgur.com/LgrkyAC.jpeg",
+      title: "Festa Temática",
       category: "Infantil",
-      description: "Tema princesa com muito rosa e dourado"
+      description: "Ambiente alegre e colorido"
     },
     {
       id: 3,
-      url: "https://i.imgur.com/XunIwzu.png",
+      url: "https://i.imgur.com/ENDkd3V.jpeg",
+      title: "Decoração Infantil",
+      category: "Infantil",
+      description: "Decoração lúdica e criativa"
+    },
+    {
+      id: 4,
+      url: "https://i.imgur.com/s4H40c1.jpeg",
+      title: "Festa Criativa",
+      category: "Infantil",
+      description: "Ambiente mágico para crianças"
+    },
+    {
+      id: 5,
+      url: "https://i.imgur.com/YuZ5vTg.jpeg",
+      title: "Decoração Temática",
+      category: "Infantil",
+      description: "Decoração com muito carinho"
+    },
+    {
+      id: 6,
+      url: "https://i.imgur.com/rrijQfg.jpeg",
+      title: "Festa Especial",
+      category: "Infantil",
+      description: "Decoração dos sonhos"
+    },
+    {
+      id: 7,
+      url: "https://i.imgur.com/tnBSl9B.jpeg",
+      title: "Decoração Personalizada",
+      category: "Infantil",
+      description: "Ambiente único e especial"
+    },
+    {
+      id: 8,
+      url: "https://i.imgur.com/Ugoq8Hx.jpeg",
+      title: "Festa Mágica",
+      category: "Infantil",
+      description: "Decoração encantadora"
+    },
+    {
+      id: 9,
+      url: "https://i.imgur.com/nObtbTv.jpeg",
+      title: "Decoração Colorida",
+      category: "Infantil",
+      description: "Ambiente alegre e divertido"
+    },
+    {
+      id: 10,
+      url: "https://i.imgur.com/Fdxqi5V.jpeg",
       title: "Festa Infantil",
+      category: "Infantil",
+      description: "Decoração criativa e única"
+    },
+    {
+      id: 11,
+      url: "https://i.imgur.com/o3p18z7.jpeg",
+      title: "Decoração Temática",
+      category: "Infantil",
+      description: "Ambiente mágico e colorido"
+    },
+    {
+      id: 12,
+      url: "https://i.imgur.com/raJRRNP.jpeg",
+      title: "Festa Especial",
+      category: "Infantil",
+      description: "Decoração encantadora"
+    },
+    {
+      id: 13,
+      url: "https://i.imgur.com/TybBHJs.jpeg",
+      title: "Decoração Infantil",
+      category: "Infantil",
+      description: "Ambiente alegre para crianças"
+    },
+    {
+      id: 14,
+      url: "https://i.imgur.com/dLoUtx9.jpeg",
+      title: "Festa Criativa",
       category: "Infantil",
       description: "Decoração lúdica e divertida"
     },
     {
-      id: 4,
-      url: "https://i.imgur.com/udxUkEo.png",
-      title: "Festa Infantil",
+      id: 15,
+      url: "https://i.imgur.com/CRFNwgq.jpeg",
+      title: "Decoração Personalizada",
       category: "Infantil",
-      description: "Ambiente alegre e encantador"
+      description: "Ambiente único e especial"
     },
     {
-      id: 5,
-      url: "https://i.imgur.com/qFVzHzE.png",
-      title: "Festa Infantil",
+      id: 16,
+      url: "https://i.imgur.com/8C4PUx9.jpeg",
+      title: "Festa Mágica",
       category: "Infantil",
-      description: "Decoração temática com muito brilho"
+      description: "Decoração dos sonhos"
     },
     {
-      id: 6,
-      url: "https://i.imgur.com/ThpqCYe.png",
-      title: "Festa Infantil",
+      id: 17,
+      url: "https://i.imgur.com/09WQLaD.jpeg",
+      title: "Decoração Temática",
       category: "Infantil",
-      description: "Festa dos sonhos para os pequenos"
+      description: "Ambiente encantador"
+    },
+    {
+      id: 18,
+      url: "https://i.imgur.com/jnv6oh8.jpeg",
+      title: "Festa Especial",
+      category: "Infantil",
+      description: "Decoração colorida e alegre"
+    },
+    {
+      id: 19,
+      url: "https://i.imgur.com/tIdXjCF.jpeg",
+      title: "Decoração Infantil",
+      category: "Infantil",
+      description: "Ambiente mágico para crianças"
+    },
+    {
+      id: 20,
+      url: "https://i.imgur.com/ujY8h2R.jpeg",
+      title: "Festa Criativa",
+      category: "Infantil",
+      description: "Decoração lúdica e especial"
+    },
+    {
+      id: 21,
+      url: "https://i.imgur.com/XYDz7T4.jpeg",
+      title: "Decoração Personalizada",
+      category: "Infantil",
+      description: "Ambiente único e encantador"
+    },
+    {
+      id: 22,
+      url: "https://i.imgur.com/zEZhZNz.jpeg",
+      title: "Festa Mágica",
+      category: "Infantil",
+      description: "Decoração dos sonhos"
+    },
+    {
+      id: 23,
+      url: "https://i.imgur.com/pV7SiQ9.jpeg",
+      title: "Decoração Temática",
+      category: "Infantil",
+      description: "Ambiente alegre e colorido"
+    },
+    {
+      id: 24,
+      url: "https://i.imgur.com/Dbmxfzw.jpeg",
+      title: "Festa Especial",
+      category: "Infantil",
+      description: "Decoração encantadora"
+    },
+    {
+      id: 25,
+      url: "https://i.imgur.com/ISm5J70.jpeg",
+      title: "Decoração Infantil",
+      category: "Infantil",
+      description: "Ambiente mágico e único"
+    },
+    {
+      id: 26,
+      url: "https://i.imgur.com/abTagP2.jpeg",
+      title: "Festa Criativa",
+      category: "Infantil",
+      description: "Decoração lúdica para crianças"
     }
   ];
 
