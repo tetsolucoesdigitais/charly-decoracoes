@@ -1,8 +1,11 @@
-import { Star, Quote, Eye, X } from "lucide-react";
+import { Star, Quote, Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { useState } from "react";
 
 const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   const testimonials = [
     {
       name: "Natália",
@@ -55,7 +58,25 @@ const Testimonials = () => {
     }
   ];
 
-  const duplicatedTestimonials = [...testimonials, ...testimonials];
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const getVisibleTestimonials = () => {
+    const visibleCount = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+    const result = [];
+    
+    for (let i = 0; i < visibleCount; i++) {
+      const index = (currentIndex + i) % testimonials.length;
+      result.push({ ...testimonials[index], originalIndex: index });
+    }
+    
+    return result;
+  };
 
   return (
     <section className="py-20 overflow-hidden bg-gradient-to-b from-purple-950 to-purple-900 relative">
@@ -75,9 +96,30 @@ const Testimonials = () => {
       </div>
 
       <div className="relative">
-        <div className="flex testimonials-scroll testimonials-scroll-mobile gap-6 py-4">
-          {duplicatedTestimonials.map((testimonial, index) => (
-            <Dialog key={index}>
+        {/* Navigation buttons */}
+        <button
+          onClick={prevTestimonial}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-purple-900/80 hover:bg-purple-800/90 text-pink-300 hover:text-pink-200 rounded-full p-3 transition-all duration-300 hover:scale-110 border border-pink-500/30 hover:border-pink-400/60"
+          style={{
+            boxShadow: '0 0 20px rgba(236, 72, 153, 0.4)'
+          }}
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        
+        <button
+          onClick={nextTestimonial}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-purple-900/80 hover:bg-purple-800/90 text-pink-300 hover:text-pink-200 rounded-full p-3 transition-all duration-300 hover:scale-110 border border-pink-500/30 hover:border-pink-400/60"
+          style={{
+            boxShadow: '0 0 20px rgba(236, 72, 153, 0.4)'
+          }}
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        <div className="flex justify-center gap-6 py-4 px-16">
+          {getVisibleTestimonials().map((testimonial, index) => (
+            <Dialog key={`${testimonial.originalIndex}-${index}`}>
               <DialogTrigger asChild>
                 <Card className="flex-shrink-0 w-80 transition-smooth cursor-pointer group bg-purple-900/40 backdrop-blur-md border-2 border-pink-500/30 hover:border-purple-400/80 rounded-2xl" style={{
                   boxShadow: '0 0 20px rgba(236, 72, 153, 0.4), inset 0 0 15px rgba(168, 85, 247, 0.1)'
@@ -154,10 +196,6 @@ const Testimonials = () => {
             </Dialog>
           ))}
         </div>
-        
-        {/* Gradient overlays for smooth edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent pointer-events-none"></div>
       </div>
     </section>
   );

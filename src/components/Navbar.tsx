@@ -78,13 +78,6 @@ const Navbar = () => {
               Sobre
             </button>
             
-            <button
-              onClick={() => scrollToSection("booking")}
-              className="text-foreground hover:text-charly-pink transition-smooth font-medium"
-            >
-              Contato
-            </button>
-            
             <a
               href="/pegue-monte"
               className="text-foreground hover:text-charly-pink transition-smooth font-medium"
@@ -178,12 +171,12 @@ const Navbar = () => {
               )}
             </div>
             
-            <a
-              href="/pegue-monte"
+            <button
+              onClick={() => scrollToSection("booking")}
               className="text-foreground hover:text-charly-pink transition-smooth font-medium"
             >
-              Pegue Monte
-            </a>
+              Contato
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -207,13 +200,6 @@ const Navbar = () => {
                 className="block w-full text-left px-3 py-2 text-purple-100 hover:text-pink-300 transition-smooth font-medium"
               >
                 Sobre
-              </button>
-              
-              <button
-                onClick={() => scrollToSection("booking")}
-                className="block w-full text-left px-3 py-2 text-foreground hover:text-charly-pink transition-smooth font-medium"
-              >
-                Contato
               </button>
               
               <a
@@ -311,60 +297,6 @@ const Navbar = () => {
               >
                 Contato
               </button>
-              
-              <div className="px-3 py-1">
-                <button
-                  onClick={() => setMobilePartnersOpen(!mobilePartnersOpen)}
-                  className="flex items-center justify-between w-full text-left text-sm font-medium text-purple-300 mb-2 hover:text-pink-300 transition-smooth"
-                >
-                  Parceiros
-                  <ChevronDown className={cn(
-                    "h-4 w-4 transition-transform",
-                    mobilePartnersOpen && "rotate-180"
-                  )} />
-                </button>
-                {mobilePartnersOpen && (
-                  <div className="space-y-1 ml-2">
-                    <a
-                       href="/parceiros"
-                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
-                     >
-                       Iluminação especial
-                     </a>
-                     <a
-                       href="/parceiros"
-                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
-                     >
-                       Docinhos temáticos
-                     </a>
-                     <a
-                       href="/parceiros"
-                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
-                     >
-                       Lembrancinhas
-                     </a>
-                     <a
-                       href="/parceiros"
-                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
-                     >
-                       Fotografia
-                     </a>
-                     <a
-                       href="/parceiros"
-                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
-                     >
-                       Buffet
-                     </a>
-                  </div>
-                )}
-              </div>
-              
-              <a
-                href="/pegue-monte"
-                className="block w-full text-left px-3 py-2 text-purple-100 hover:text-pink-300 transition-smooth font-medium"
-              >
-                Pegue Monte
-              </a>
             </div>
           </div>
         )}
