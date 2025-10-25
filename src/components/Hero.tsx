@@ -109,7 +109,7 @@ const Hero = () => {
           {/* Title only */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
+              <h1 className="text-5xl sm:text-6xl lg:text-9xl xl:text-[10rem] font-bold text-white leading-tight drop-shadow-2xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
                 Charly Decorações
               </h1>
               <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg px-4">

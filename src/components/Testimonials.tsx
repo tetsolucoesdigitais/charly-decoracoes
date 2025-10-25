@@ -1,6 +1,6 @@
-import { Star, Quote, Eye } from "lucide-react";
+import { Star, Quote, Eye, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 
 const Testimonials = () => {
   const testimonials = [
@@ -124,18 +124,23 @@ const Testimonials = () => {
                 </Card>
               </DialogTrigger>
               
-              <DialogContent className="bg-card/95 backdrop-blur-xl border-charly-pink/20 max-w-md aspect-[9/16] p-0 overflow-hidden">
+              <DialogContent className="bg-card/95 backdrop-blur-xl border-charly-pink/20 max-w-sm max-h-[70vh] p-0 overflow-hidden">
                 <div className="relative w-full h-full">
+                  {/* Botão fechar */}
+                  <DialogClose className="absolute top-4 right-4 z-20 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-300 hover:scale-110">
+                    <X className="w-5 h-5" />
+                  </DialogClose>
+                  
                   <img
                     src={testimonial.image}
                     alt={`Depoimento de ${testimonial.name}`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4">
+                    <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">
                       {testimonial.name}
                     </h3>
-                    <p className="text-white/90 text-sm drop-shadow-md">
+                    <p className="text-white/90 text-sm drop-shadow-md leading-relaxed">
                       "{testimonial.comment}"
                     </p>
                     <div className="flex gap-1 mt-3">

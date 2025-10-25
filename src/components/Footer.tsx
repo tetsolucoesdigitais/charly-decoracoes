@@ -163,8 +163,8 @@ const Footer = ({ showServiceHoursPopup = false }: FooterProps) => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700/30 bg-black/90 backdrop-blur-lg">
           <div className="container mx-auto px-4 py-8 pb-20 md:pb-8">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0">
-              <div className="text-gray-300 text-center lg:text-left space-y-3 flex-1">
+            <div className="flex flex-col lg:flex-row justify-between items-center lg:items-center space-y-6 lg:space-y-0">
+              <div className="text-gray-300 text-center space-y-3 flex-1">
                 <p className="text-base">
                   © 2025 Charly. Todos os direitos reservados. Feito com{" "}
                   <Heart className="inline w-4 h-4 text-blue-400 mx-1" />{" "}
@@ -174,7 +174,7 @@ const Footer = ({ showServiceHoursPopup = false }: FooterProps) => {
                   Email: <a href="mailto:contato@charlydecoracoes.com.br" className="text-blue-400 hover:text-cyan-400 transition-smooth font-medium">contato@charlydecoracoes.com.br</a>
                 </p>
                 <p className="text-xs text-gray-400">
-                  Desenvolvido pela <a href="https://www.tetsolucoesdigitais.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-blue-400 transition-smooth font-medium">TET Soluções Digitais</a>
+                  Desenvolvido por <a href="https://coelabs-tecnologia.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-blue-400 transition-smooth font-medium">Coelabs Tecnologia</a>
                 </p>
               </div>
               
