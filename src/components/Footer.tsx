@@ -1,18 +1,24 @@
-import { Heart, Instagram, Phone, Mail, MapPin, Clock, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { MapPin, Phone, Mail, Instagram, Facebook, Clock, X, Heart } from "lucide-react";
 
-const Footer = () => {
+interface FooterProps {
+  showServiceHoursPopup?: boolean;
+}
+
+const Footer = ({ showServiceHoursPopup = false }: FooterProps) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hasShownPopup, setHasShownPopup] = useState(false);
 
   useEffect(() => {
+    if (!showServiceHoursPopup) return;
+    
     const handleScroll = () => {
       const footer = document.querySelector('footer');
       if (footer && !hasShownPopup) {
         const footerRect = footer.getBoundingClientRect();
-        const isFooterVisible = footerRect.top < window.innerHeight && footerRect.bottom > 0;
+        const isVisible = footerRect.top < window.innerHeight && footerRect.bottom >= 0;
         
-        if (isFooterVisible) {
+        if (isVisible) {
           setShowPopup(true);
           setHasShownPopup(true);
         }
@@ -21,19 +27,23 @@ const Footer = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasShownPopup]);
+  }, [hasShownPopup, showServiceHoursPopup]);
 
-  const closePopup = () => {
+  const closePopup = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setShowPopup(false);
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-900 border-t border-charly-pink/20">
-      {/* Futuristic background pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-charly-pink rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-charly-purple rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-charly-mint rounded-full blur-3xl"></div>
+    <footer className="relative bg-gradient-to-br from-slate-900 via-gray-900 to-black border-t border-gray-700/30">
+      {/* Modern dark background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-cyan-500 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10">
@@ -42,17 +52,13 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center">
                 <img 
                    src="https://i.imgur.com/9wU7G0V.png" 
-                   alt="Charly Decorações" 
+                   alt="Charly" 
                    className="h-20 w-auto floating hover:scale-110 transition-transform cursor-pointer"
                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                  />
-                <div>
-                  <h3 className="text-2xl font-bold text-gradient-primary">Charly</h3>
-                  <p className="text-charly-gold font-light">Decorações</p>
-                </div>
               </div>
               <p className="text-muted-foreground">
                 Transformando seus sonhos em realidade com decorações únicas e inesquecíveis para todos os tipos de eventos.
@@ -155,34 +161,34 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-charly-pink/20 bg-purple-900/80 backdrop-blur-lg">
+        <div className="border-t border-gray-700/30 bg-black/90 backdrop-blur-lg">
           <div className="container mx-auto px-4 py-8 pb-20 md:pb-8">
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0">
-              <div className="text-pink-200 text-center lg:text-left space-y-3 flex-1">
+              <div className="text-gray-300 text-center lg:text-left space-y-3 flex-1">
                 <p className="text-base">
-                  © 2025 Charly Decorações. Todos os direitos reservados. Feito com{" "}
-                  <Heart className="inline w-4 h-4 text-charly-pink mx-1" />{" "}
+                  © 2025 Charly. Todos os direitos reservados. Feito com{" "}
+                  <Heart className="inline w-4 h-4 text-blue-400 mx-1" />{" "}
                   para tornar seus momentos especiais.
                 </p>
                 <p className="text-sm">
-                  Email: <a href="mailto:contato@charlydecoracoes.com.br" className="text-charly-pink hover:text-charly-purple transition-smooth font-medium">contato@charlydecoracoes.com.br</a>
+                  Email: <a href="mailto:contato@charlydecoracoes.com.br" className="text-blue-400 hover:text-cyan-400 transition-smooth font-medium">contato@charlydecoracoes.com.br</a>
                 </p>
-                <p className="text-xs text-pink-300">
-                  Desenvolvido pela <a href="https://www.tetsolucoesdigitais.com.br" target="_blank" rel="noopener noreferrer" className="text-charly-mint hover:text-charly-gold transition-smooth font-medium">TET Soluções Digitais</a>
+                <p className="text-xs text-gray-400">
+                  Desenvolvido pela <a href="https://www.tetsolucoesdigitais.com.br" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:text-blue-400 transition-smooth font-medium">TET Soluções Digitais</a>
                 </p>
               </div>
               
               {/* Links Section */}
-              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-sm text-pink-200 lg:flex-shrink-0">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-sm text-gray-300 lg:flex-shrink-0">
                 <a 
                   href="/politica-privacidade" 
-                  className="bg-purple-800/50 hover:bg-purple-700/60 px-4 py-2 rounded-full hover:text-charly-pink transition-all duration-300 border border-purple-600/30 hover:border-charly-pink/50 font-medium"
+                  className="bg-gray-800/50 hover:bg-gray-700/60 px-4 py-2 rounded-full hover:text-blue-400 transition-all duration-300 border border-gray-600/30 hover:border-blue-400/50 font-medium"
                 >
                   📋 Política de Privacidade
                 </a>
                 <a 
                   href="/termos-uso" 
-                  className="bg-purple-800/50 hover:bg-purple-700/60 px-4 py-2 rounded-full hover:text-charly-pink transition-all duration-300 border border-purple-600/30 hover:border-charly-pink/50 font-medium"
+                  className="bg-gray-800/50 hover:bg-gray-700/60 px-4 py-2 rounded-full hover:text-blue-400 transition-all duration-300 border border-gray-600/30 hover:border-blue-400/50 font-medium"
                 >
                   📄 Termos de Uso
                 </a>
@@ -201,10 +207,12 @@ const Footer = () => {
           <div className="bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-900 rounded-2xl p-8 max-w-md w-full mx-4 border border-charly-pink/30 shadow-2xl animate-in slide-in-from-bottom-4 duration-500">
             <div className="relative">
               <button
-                onClick={closePopup}
-                className="absolute -top-2 -right-2 bg-charly-pink/20 hover:bg-charly-pink/40 rounded-full p-2 transition-all duration-300 group"
+                onClick={(e) => closePopup(e)}
+                className="absolute -top-2 -right-2 bg-charly-pink/30 hover:bg-charly-pink/60 rounded-full p-3 transition-all duration-300 group z-10 border border-white/20 hover:border-white/40"
+                type="button"
+                aria-label="Fechar popup"
               >
-                <X className="w-4 h-4 text-white group-hover:rotate-90 transition-transform" />
+                <X className="w-5 h-5 text-white group-hover:rotate-90 transition-transform" />
               </button>
               
               <div className="text-center space-y-4">

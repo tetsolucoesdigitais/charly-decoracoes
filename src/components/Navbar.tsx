@@ -55,15 +55,9 @@ const Navbar = () => {
           >
             <img 
               src="https://i.imgur.com/9wU7G0V.png" 
-              alt="Charly Decorações" 
-              className="h-16 w-auto mr-3 group-hover:scale-110 transition-transform"
+              alt="Charly" 
+              className="h-16 w-auto group-hover:scale-110 transition-transform"
             />
-            <div className="text-2xl font-bold text-gradient-primary group-hover:scale-110 transition-smooth">
-              Charly
-            </div>
-            <div className="ml-2 text-lg text-charly-gold font-light">
-              Decorações
-            </div>
           </div>
 
           {/* Desktop Menu */}
@@ -133,6 +127,12 @@ const Navbar = () => {
                      className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
                    >
                      Buffet
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   >
+                     Papelaria
                    </a>
                 </div>
               )}
@@ -249,6 +249,12 @@ const Navbar = () => {
                        className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
                      >
                        Buffet
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                     >
+                       Papelaria
                      </a>
                   </div>
                 )}

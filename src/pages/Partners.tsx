@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Lightbulb, Cookie, Gift, Camera, UtensilsCrossed } from 'lucide-react';
+import { Lightbulb, Cookie, Gift, Camera, UtensilsCrossed, FileText, MessageCircle, ExternalLink } from 'lucide-react';
 import { cn } from '../lib/utils';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Card, CardContent } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 const Partners = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -14,9 +16,25 @@ const Partners = () => {
     { id: 'souvenirs', name: 'Lembrancinhas', icon: Gift },
     { id: 'photography', name: 'Fotografia', icon: Camera },
     { id: 'buffet', name: 'Buffet', icon: UtensilsCrossed },
+    { id: 'papelaria', name: 'Papelaria', icon: FileText },
   ];
 
-  const partners = [];
+  const partners = [
+    {
+      id: 1,
+      name: "Ateliê Doce Arte - Papelaria Personalizada",
+      category: "papelaria",
+      description: "Especializada em papelaria personalizada para eventos especiais, criando convites únicos e materiais gráficos de alta qualidade.",
+      logo: "https://i.imgur.com/EQeucJZ.png",
+      photos: [
+        "https://i.imgur.com/wLxckJX.jpeg",
+        "https://i.imgur.com/mW1t0y4.jpeg",
+        "https://i.imgur.com/5Yc7Y9c.jpeg"
+      ],
+      whatsapp: "5511963438061",
+      website: null
+    }
+  ];
 
   const filteredPartners = selectedCategory === 'all' 
     ? partners 
@@ -79,16 +97,123 @@ const Partners = () => {
           })}
         </div>
 
-        {/* Empty State - Coming Soon */}
-        <div className="text-center py-16">
-          <div className="text-6xl mb-4">🤝</div>
-          <h3 className="text-2xl font-bold text-foreground mb-2">
-            Em breve!
-          </h3>
-          <p className="text-muted-foreground">
-            Estamos trabalhando para trazer os melhores parceiros para você!
-          </p>
-        </div>
+        {/* Partners Grid */}
+        {filteredPartners.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPartners.map((partner) => {
+              const categoryName = categories.find(cat => cat.id === partner.category)?.name || partner.category;
+              return (
+                <Card key={partner.id} className="overflow-hidden bg-card/50 backdrop-blur-sm border-charly-pink/20 hover:border-charly-pink/60 transition-all duration-500 hover:shadow-2xl hover:shadow-charly-pink/20 group relative">
+                  {/* Efeito Neon */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-charly-pink/0 via-charly-pink/5 to-charly-purple/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-charly-pink/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                  
+                  <CardContent className="p-0 relative z-10">
+                    {/* Category Badge */}
+                    <div className="absolute top-4 right-4 z-20">
+                      <span className="bg-charly-pink/90 text-white text-xs px-3 py-1 rounded-full font-medium shadow-lg backdrop-blur-sm">
+                        {categoryName}
+                      </span>
+                    </div>
+                    
+                    {/* Logo Section */}
+                    <div className="relative h-56 bg-gradient-to-br from-charly-pink/10 to-charly-purple/10 flex items-center justify-center group-hover:from-charly-pink/15 group-hover:to-charly-purple/15 transition-all duration-500">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <div className="cursor-pointer group/logo">
+                            <img 
+                              src={partner.logo} 
+                              alt={`Logo ${partner.name}`}
+                              className="w-32 h-32 object-cover rounded-2xl border-3 border-white/30 shadow-2xl group-hover/logo:scale-110 group-hover/logo:shadow-charly-pink/30 transition-all duration-500 hover:border-charly-pink/50"
+                            />
+                            <div className="absolute inset-0 bg-charly-pink/0 group-hover/logo:bg-charly-pink/10 rounded-2xl transition-all duration-300"></div>
+                          </div>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-2xl">
+                          <img 
+                            src={partner.logo} 
+                            alt={`Logo ${partner.name}`}
+                            className="w-full h-auto rounded-lg"
+                          />
+                        </DialogContent>
+                      </Dialog>
+                    </div>
+                    
+                    {/* Content Section */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-charly-pink transition-colors duration-300">{partner.name}</h3>
+                      <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                        {partner.description}
+                      </p>
+                      
+                      {/* Photos Grid */}
+                      <div className="grid grid-cols-3 gap-3 mb-6">
+                        {partner.photos.map((photo, index) => (
+                          <Dialog key={index}>
+                            <DialogTrigger asChild>
+                              <div className="aspect-square rounded-xl overflow-hidden cursor-pointer group/photo relative">
+                                <img 
+                                  src={photo} 
+                                  alt={`${partner.name} - Foto ${index + 1}`}
+                                  className="w-full h-full object-cover group-hover/photo:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 border-2 border-transparent group-hover/photo:border-charly-pink/50 rounded-xl transition-all duration-300"></div>
+                              </div>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-4xl">
+                              <img 
+                                src={photo} 
+                                alt={`${partner.name} - Foto ${index + 1}`}
+                                className="w-full h-auto rounded-lg"
+                              />
+                            </DialogContent>
+                          </Dialog>
+                        ))}
+                      </div>
+                      
+                      {/* WhatsApp Button */}
+                      <button
+                        onClick={() => window.open(`https://wa.me/${partner.whatsapp}?text=Olá! 👋 Venho através do site Charly Decorações e gostaria de saber mais sobre os seus serviços! 🎉✨`, '_blank')}
+                        className="w-full bg-gradient-to-r from-purple-600 to-purple-800 text-white py-3 px-4 rounded-xl hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 font-medium flex items-center justify-center gap-2 group/btn hover:scale-105 relative overflow-hidden"
+                      >
+                        {/* Efeito Neon */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-purple-600/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 border-2 border-transparent group-hover/btn:border-purple-400/50 rounded-xl transition-all duration-300"></div>
+                        <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl blur opacity-0 group-hover/btn:opacity-30 transition-opacity duration-300"></div>
+                        
+                        <MessageCircle className="w-5 h-5 group-hover/btn:scale-110 transition-transform duration-300 relative z-10" />
+                        <span className="relative z-10">Entre em Contato</span>
+                      </button>
+                      
+                      {/* Website Link */}
+                      {partner.website && (
+                        <button
+                          onClick={() => window.open(partner.website, '_blank')}
+                          className="w-full mt-3 border-2 border-charly-pink/30 text-charly-pink py-3 px-4 rounded-xl hover:bg-charly-pink/10 hover:border-charly-pink/60 transition-all duration-300 font-medium flex items-center justify-center gap-2 group/btn2 hover:scale-105"
+                        >
+                          <ExternalLink className="w-4 h-4 group-hover/btn2:scale-110 transition-transform duration-300" />
+                          Visitar Site
+                        </button>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        ) : (
+          /* Empty State - Coming Soon */
+          <div className="text-center py-16">
+            <div className="text-6xl mb-4">🤝</div>
+            <h3 className="text-2xl font-bold text-foreground mb-2">
+              Em breve!
+            </h3>
+            <p className="text-muted-foreground">
+              Estamos trabalhando para trazer os melhores parceiros para você!
+            </p>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
@@ -100,7 +225,7 @@ const Partners = () => {
               Junte-se à nossa rede de parceiros e faça parte dos eventos mais especiais da região!
             </p>
             <button 
-              onClick={() => window.open('https://wa.me/551198041534?text=Olá! Gostaria de saber mais sobre como me tornar um parceiro da Charly Decorações.', '_blank')}
+              onClick={() => window.open('https://wa.me/5511980411534?text=Olá gostaria de ter minha marca no seu site como parceiro!', '_blank')}
               className="bg-charly-pink text-white px-8 py-3 rounded-lg hover:bg-charly-pink/90 transition-colors font-medium hover:scale-105 transform duration-200"
             >
               Entre em Contato

@@ -1,4 +1,4 @@
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, Eye } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
@@ -24,6 +24,34 @@ const Testimonials = () => {
       rating: 5,
       comment: "Decoração perfeita e atendimento impecável. Muito obrigada!",
       image: "https://i.imgur.com/XUeaboX.jpeg"
+    },
+    {
+      name: "Janaine Delmondes",
+      event: "Testemunho",
+      rating: 5,
+      comment: "Confira o depoimento completo desta cliente satisfeita!",
+      image: "https://i.imgur.com/MXNvuyA.png"
+    },
+    {
+      name: "Lara Leite",
+      event: "Testemunho",
+      rating: 5,
+      comment: "Veja o que nossa cliente tem a dizer sobre nossos serviços!",
+      image: "https://i.imgur.com/3hIzwF1.png"
+    },
+    {
+      name: "Denise Perella",
+      event: "Testemunho",
+      rating: 5,
+      comment: "Depoimento especial de uma cliente muito querida!",
+      image: "https://i.imgur.com/RTQBZEq.png"
+    },
+    {
+      name: "Talita",
+      event: "Testemunho",
+      rating: 5,
+      comment: "Mais um depoimento incrível dos nossos clientes!",
+      image: "https://i.imgur.com/CIWFqj4.png"
     }
   ];
 
@@ -72,9 +100,15 @@ const Testimonials = () => {
                         </div>
                       </div>
                     </div>
-                    <p className="text-sm text-foreground leading-relaxed">
+                    <p className="text-sm text-foreground leading-relaxed mb-3">
                       "{testimonial.comment}"
                     </p>
+                    
+                    {/* Alerta "Clique e veja" */}
+                    <div className="flex items-center gap-2 text-xs text-charly-pink/80 group-hover:text-charly-pink transition-colors duration-300">
+                      <Eye className="w-3 h-3" />
+                      <span className="font-medium">Clique e veja</span>
+                    </div>
                   </CardContent>
                 </Card>
               </DialogTrigger>

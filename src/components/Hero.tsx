@@ -47,43 +47,71 @@ const Hero = () => {
         playsInline
         className="video-background"
       >
-        <source src="https://i.imgur.com/EkeoInV.mp4" type="video/mp4" />
+        <source src="https://i.imgur.com/lv2ahnr.mp4" type="video/mp4" />
       </video>
       
       {/* Overlay */}
       <div className="absolute inset-0 bg-purple-900/50 backdrop-blur-[1px]"></div>
       
+      {/* Balões Hero */}
+      <div className="hero-balloons">
+        <div className="hero-balloon hero-balloon-1"></div>
+        <div className="hero-balloon hero-balloon-2"></div>
+        <div className="hero-balloon hero-balloon-3"></div>
+        <div className="hero-balloon hero-balloon-4"></div>
+        <div className="hero-balloon hero-balloon-5"></div>
+        <div className="hero-balloon hero-balloon-6"></div>
+      </div>
+
+      {/* Confetes Decorativos */}
+      <div className="absolute inset-0 pointer-events-none z-4">
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="confetti"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${6 + Math.random() * 4}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Estrelas Decorativas */}
+      <div className="absolute top-16 left-8 decoration-star">
+        <Star className="w-4 h-4" />
+      </div>
+      <div className="absolute top-32 right-12 decoration-star" style={{ animationDelay: "1s" }}>
+        <Star className="w-3 h-3" />
+      </div>
+      <div className="absolute bottom-32 left-16 decoration-star" style={{ animationDelay: "2s" }}>
+        <Star className="w-5 h-5" />
+      </div>
+      <div className="absolute top-1/2 right-8 decoration-star" style={{ animationDelay: "3s" }}>
+        <Star className="w-4 h-4" />
+      </div>
+
       {/* Floating Elements */}
-      <div className="absolute top-20 left-4 lg:left-10 text-charly-pink/30 floating">
+      <div className="absolute top-20 left-4 lg:left-10 text-charly-pink/40 floating">
         <Heart className="w-6 h-6 lg:w-8 lg:h-8" />
       </div>
-      <div className="absolute top-40 right-4 lg:right-20 text-charly-mint/30 floating" style={{ animationDelay: "2s" }}>
+      <div className="absolute top-40 right-4 lg:right-20 text-charly-mint/40 floating" style={{ animationDelay: "2s" }}>
         <Sparkles className="w-4 h-4 lg:w-6 lg:h-6" />
       </div>
-      <div className="absolute bottom-40 left-4 lg:left-20 text-charly-purple/30 floating" style={{ animationDelay: "4s" }}>
+      <div className="absolute bottom-40 left-4 lg:left-20 text-charly-purple/40 floating" style={{ animationDelay: "4s" }}>
         <Star className="w-5 h-5 lg:w-7 lg:h-7" />
       </div>
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         {/* Content */}
         <div className="text-center space-y-12">
-          {/* Logo and Title */}
+          {/* Title only */}
           <div className="space-y-8">
-            <div className="flex justify-center">
-              <img 
-                src="https://i.imgur.com/9wU7G0V.png" 
-                alt="Charly Decorações" 
-                className="h-24 sm:h-28 lg:h-32 w-auto floating hover:scale-110 transition-transform cursor-pointer relative z-50"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              />
-            </div>
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl">
-                Charly
+              <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
+                Charly Decorações
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-light text-charly-gold drop-shadow-lg">
-                Decorações
-              </h2>
               <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg px-4">
                 Transformando seus sonhos em realidade com decorações únicas e inesquecíveis
               </p>

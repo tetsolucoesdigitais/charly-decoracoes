@@ -71,34 +71,42 @@ const Services = () => {
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
-              <Card 
+              <div 
                 key={index} 
-                className="group stats-card hover:scale-105 transition-all duration-500 bg-card/50 backdrop-blur-lg border-border/30 overflow-hidden"
+                className="group neon-card neon-glow hover:scale-105 transition-all duration-500 cursor-pointer"
               >
-                <CardContent className="p-8 relative">
-                  {/* Icon with gradient background */}
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} p-4 mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-full h-full text-white" />
+                <CardContent className="p-8 relative h-full">
+                  {/* Animated background glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-charly-pink/5 via-charly-purple/5 to-charly-mint/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                  
+                  {/* Icon with enhanced gradient background */}
+                  <div className={`relative w-20 h-20 rounded-3xl bg-gradient-to-br ${service.gradient} p-5 mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
+                    <IconComponent className="w-full h-full text-white drop-shadow-lg" />
+                    <div className="absolute inset-0 bg-white/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   
                   {/* Content */}
-                  <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-charly-pink transition-colors">
+                  <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-gradient-primary transition-all duration-300 relative z-10">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-8 relative z-10 group-hover:text-foreground/90 transition-colors duration-300">
                     {service.description}
                   </p>
                   
-                  {/* Hover effect arrow */}
-                  <div className="flex items-center text-charly-pink opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-2">
-                    <span className="text-sm font-medium mr-2">Saiba mais</span>
-                    <ArrowRight className="w-4 h-4" />
+                  {/* Enhanced hover effect arrow */}
+                  <div className="flex items-center text-charly-pink opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-0 group-hover:translate-x-3 relative z-10">
+                    <span className="text-sm font-semibold mr-3 tracking-wide">Saiba mais</span>
+                    <ArrowRight className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   
-                  {/* Decorative elements */}
-                  <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-charly-pink/10 to-charly-purple/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  {/* Enhanced decorative elements */}
+                  <div className="absolute top-6 right-6 w-24 h-24 bg-gradient-to-br from-charly-pink/20 to-charly-purple/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                  <div className="absolute bottom-6 left-6 w-16 h-16 bg-gradient-to-tr from-charly-mint/15 to-charly-gold/15 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100"></div>
+                  
+                  {/* Subtle inner glow */}
+                  <div className="absolute inset-2 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                 </CardContent>
-              </Card>
+              </div>
             );
           })}
         </div>
