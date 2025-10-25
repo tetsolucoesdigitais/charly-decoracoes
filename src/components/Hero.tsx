@@ -38,7 +38,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-20">
       {/* Video Background */}
       <video
         autoPlay

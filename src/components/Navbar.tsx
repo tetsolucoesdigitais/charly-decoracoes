@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,15 @@ const Navbar = () => {
   const [mobilePartnersOpen, setMobilePartnersOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Fechar dropdowns automaticamente quando a localização mudar
+  useEffect(() => {
+    setIsOpen(false);
+    setPortfolioOpen(false);
+    setPartnersOpen(false);
+    setMobilePortfolioOpen(false);
+    setMobilePartnersOpen(false);
+  }, [location.pathname]);
 
   const scrollToSection = (sectionId: string) => {
     // Se não estiver na página inicial, navegar primeiro para ela
@@ -54,9 +63,9 @@ const Navbar = () => {
             onClick={goToHome}
           >
             <img 
-              src="https://i.imgur.com/nIshVim.png" 
+              src="https://i.imgur.com/9wU7G0V.png" 
               alt="Charly Decorações" 
-              className="h-24 w-auto group-hover:scale-110 transition-transform"
+              className="h-20 w-auto group-hover:scale-110 transition-transform"
             />
           </div>
 
@@ -165,62 +174,6 @@ const Navbar = () => {
                  >
                     Vídeos
                   </a>
-                </div>
-              )}
-            </div>
-            
-            <button
-              onClick={() => scrollToSection("booking")}
-              className="text-purple-100 hover:text-pink-400 transition-smooth font-medium"
-            >
-              Contato
-            </button>
-            
-            {/* Partners Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setPartnersOpen(!partnersOpen)}
-                className="flex items-center text-purple-100 hover:text-pink-400 transition-smooth font-medium"
-              >
-                Parceiros
-                <ChevronDown className={cn(
-                  "ml-1 h-4 w-4 transition-transform",
-                  partnersOpen && "rotate-180"
-                )} />
-              </button>
-              
-              {partnersOpen && (
-                <div className="absolute top-full mt-2 left-0 bg-purple-900 border border-purple-500/30 rounded-lg shadow-lg py-2 min-w-[180px]">
-                  <a
-                     href="/parceiros"
-                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
-                   >
-                    Iluminação especial
-                  </a>
-                  <a
-                     href="/parceiros"
-                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
-                   >
-                     Docinhos temáticos
-                   </a>
-                   <a
-                     href="/parceiros"
-                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
-                   >
-                     Lembrancinhas
-                   </a>
-                   <a
-                     href="/parceiros"
-                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
-                   >
-                     Fotografia
-                   </a>
-                   <a
-                     href="/parceiros"
-                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
-                   >
-                     Buffet
-                   </a>
                 </div>
               )}
             </div>
