@@ -45,7 +45,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-purple-950/95 backdrop-blur-lg border-b border-purple-500/30 shadow-lg shadow-purple-500/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-purple-500/30 shadow-lg shadow-purple-500/20" style={{ backgroundColor: '#180821' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

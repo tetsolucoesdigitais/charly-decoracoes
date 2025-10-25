@@ -67,24 +67,16 @@ const Hero = () => {
       <div className="container mx-auto px-4 py-12 relative z-10">
         {/* Content */}
         <div className="text-center space-y-12">
-          {/* Logo and Title */}
-          <div className="space-y-8">
-            <div className="flex justify-center">
-              <img 
-                src="https://i.imgur.com/9wU7G0V.png" 
-                alt="Charly Decorações" 
-                className="h-24 sm:h-28 lg:h-32 w-auto floating hover:scale-110 transition-transform cursor-pointer relative z-50"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              />
-            </div>
+          {/* Title - Modern Typography */}
+          <div className="space-y-6">
             <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl">
-                Charly
+              <h1 className="text-6xl sm:text-7xl lg:text-9xl font-bold text-white leading-tight drop-shadow-2xl tracking-tight" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900 }}>
+                CHARLY
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-light text-charly-gold drop-shadow-lg">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 drop-shadow-lg tracking-wide" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
                 Decorações
               </h2>
-              <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg px-4">
+              <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg px-4 mt-6" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>
                 Transformando seus sonhos em realidade com decorações únicas e inesquecíveis
               </p>
             </div>
