@@ -57,9 +57,9 @@ const Footer = ({ showPopup: enablePopup = false }: FooterProps) => {
             <div className="space-y-4">
               <div className="flex items-center">
                 <img 
-                   src="https://i.imgur.com/9wU7G0V.png" 
+                   src="https://i.imgur.com/nIshVim.png" 
                    alt="Charly Decorações" 
-                   className="h-20 w-auto floating hover:scale-110 transition-transform cursor-pointer"
+                   className="h-24 w-auto floating hover:scale-110 transition-transform cursor-pointer"
                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                  />
               </div>

@@ -38,7 +38,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <video
         autoPlay
@@ -64,7 +64,7 @@ const Hero = () => {
         <Star className="w-5 h-5 lg:w-7 lg:h-7" />
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         {/* Content */}
         <div className="text-center space-y-12">
           {/* Logo and Title */}
