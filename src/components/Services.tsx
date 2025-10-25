@@ -1,11 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Heart, 
-  Baby, 
-  Cake, 
-  Crown, 
-  Building2, 
-  Gift,
+  PartyPopper, 
+  Sparkles, 
+  Flower2, 
+  Award, 
+  Briefcase, 
+  HeartHandshake,
   ArrowRight
 } from "lucide-react";
 
@@ -14,37 +14,37 @@ const Services = () => {
     {
       title: "Aniversário",
       description: "Celebre mais um ano de vida com uma decoração única e personalizada que torna seu dia ainda mais especial.",
-      icon: Cake,
+      icon: PartyPopper,
       gradient: "from-charly-pink to-charly-purple"
     },
     {
       title: "Casamento",
       description: "O dia mais importante da sua vida merece uma decoração dos sonhos. Criamos ambientes românticos e inesquecíveis.",
-      icon: Heart,
+      icon: Sparkles,
       gradient: "from-charly-purple to-charly-mint"
     },
     {
       title: "Infantil",
       description: "Transformamos a festa do seu pequeno em um mundo mágico cheio de cores, diversão e momentos especiais.",
-      icon: Baby,
+      icon: Flower2,
       gradient: "from-charly-mint to-charly-gold"
     },
     {
       title: "Festa de 15 Anos",
       description: "A transição para a vida adulta merece uma celebração única. Criamos decorações elegantes e sofisticadas.",
-      icon: Crown,
+      icon: Award,
       gradient: "from-charly-gold to-charly-pink"
     },
     {
       title: "Corporativo",
       description: "Eventos empresariais com decoração profissional que reflete a identidade da sua marca e impressiona clientes.",
-      icon: Building2,
+      icon: Briefcase,
       gradient: "from-charly-pink to-charly-purple"
     },
     {
       title: "Chá de Bebê",
       description: "Celebre a chegada do seu bebê com uma decoração delicada e cheia de amor, criando memórias para toda vida.",
-      icon: Gift,
+      icon: HeartHandshake,
       gradient: "from-charly-purple to-charly-mint"
     }
   ];
@@ -73,30 +73,32 @@ const Services = () => {
             return (
               <Card 
                 key={index} 
-                className="group stats-card hover:scale-105 transition-all duration-500 bg-card/50 backdrop-blur-lg border-border/30 overflow-hidden"
+                className="group relative hover:shadow-2xl transition-all duration-500 bg-white border-2 border-charly-pink/20 hover:border-charly-purple/50 overflow-hidden rounded-3xl"
               >
-                <CardContent className="p-8 relative">
-                  {/* Icon with gradient background */}
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} p-4 mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-full h-full text-white" />
+                <div className="absolute inset-0 bg-gradient-to-br from-charly-pink/5 via-transparent to-charly-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <CardContent className="p-8 relative z-10">
+                  {/* Modern icon with gradient */}
+                  <div className="relative mb-6">
+                    <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${service.gradient} p-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
+                      <IconComponent className="w-full h-full text-white" strokeWidth={1.5} />
+                    </div>
+                    <div className={`absolute -bottom-2 -right-2 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500`}></div>
                   </div>
                   
                   {/* Content */}
                   <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-charly-pink transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6 text-base">
                     {service.description}
                   </p>
                   
-                  {/* Hover effect arrow */}
-                  <div className="flex items-center text-charly-pink opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-2">
-                    <span className="text-sm font-medium mr-2">Saiba mais</span>
-                    <ArrowRight className="w-4 h-4" />
+                  {/* Modern hover effect */}
+                  <div className="flex items-center text-charly-purple font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <span className="text-sm mr-2">Descubra mais</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </div>
-                  
-                  {/* Decorative elements */}
-                  <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-charly-pink/10 to-charly-purple/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </CardContent>
               </Card>
             );

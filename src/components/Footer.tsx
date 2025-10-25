@@ -1,11 +1,17 @@
 import { Heart, Instagram, Phone, Mail, MapPin, Clock, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
-const Footer = () => {
+interface FooterProps {
+  showPopup?: boolean;
+}
+
+const Footer = ({ showPopup: enablePopup = false }: FooterProps) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hasShownPopup, setHasShownPopup] = useState(false);
 
   useEffect(() => {
+    if (!enablePopup) return;
+    
     const handleScroll = () => {
       const footer = document.querySelector('footer');
       if (footer && !hasShownPopup) {
@@ -21,7 +27,7 @@ const Footer = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasShownPopup]);
+  }, [hasShownPopup, enablePopup]);
 
   const closePopup = () => {
     setShowPopup(false);
@@ -198,8 +204,8 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Weekend Popup */}
-      {showPopup && (
+      {/* Weekend Popup - Only on Index page */}
+      {showPopup && enablePopup && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
           <div className="bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-900 rounded-2xl p-8 max-w-md w-full mx-4 border border-charly-pink/30 shadow-2xl animate-in slide-in-from-bottom-4 duration-500">
             <div className="relative">
@@ -207,6 +213,7 @@ const Footer = () => {
                 onClick={closePopup}
                 className="absolute -top-2 -right-2 bg-charly-pink/20 hover:bg-charly-pink/40 rounded-full p-2 transition-all duration-300 group"
                 aria-label="Fechar"
+                type="button"
               >
                 <X className="w-4 h-4 text-white group-hover:rotate-90 transition-transform" />
               </button>

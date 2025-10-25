@@ -54,9 +54,9 @@ const Navbar = () => {
             onClick={goToHome}
           >
             <img 
-              src="https://i.imgur.com/9wU7G0V.png" 
+              src="https://i.imgur.com/nIshVim.png" 
               alt="Charly Decorações" 
-              className="h-24 w-auto group-hover:scale-110 transition-transform"
+              className="h-32 w-auto group-hover:scale-110 transition-transform"
             />
           </div>
 

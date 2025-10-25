@@ -16,7 +16,16 @@ const Partners = () => {
     { id: 'buffet', name: 'Buffet', icon: UtensilsCrossed },
   ];
 
-  const partners = [];
+  const partners = [
+    // Example structure - users can add their partners here
+    // {
+    //   name: "Nome do Parceiro",
+    //   phone: "(11) 9 9999-9999",
+    //   description: "Descrição dos serviços oferecidos pelo parceiro",
+    //   category: "lighting",
+    //   images: ["url1", "url2", "url3"]
+    // }
+  ];
 
   const filteredPartners = selectedCategory === 'all' 
     ? partners 
@@ -79,16 +88,74 @@ const Partners = () => {
           })}
         </div>
 
-        {/* Empty State - Coming Soon */}
-        <div className="text-center py-16">
-          <div className="text-6xl mb-4">🤝</div>
-          <h3 className="text-2xl font-bold text-foreground mb-2">
-            Em breve!
-          </h3>
-          <p className="text-muted-foreground">
-            Estamos trabalhando para trazer os melhores parceiros para você!
-          </p>
-        </div>
+        {/* Partners Grid or Empty State */}
+        {filteredPartners.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPartners.map((partner, index) => (
+              <div
+                key={index}
+                className="bg-card rounded-2xl overflow-hidden border-2 border-charly-pink/20 hover:border-charly-purple/50 transition-all duration-300 hover:shadow-xl"
+              >
+                {/* Partner Images Grid */}
+                <div className="grid grid-cols-3 gap-1 p-2">
+                  {partner.images?.slice(0, 3).map((img, imgIndex) => (
+                    <div
+                      key={imgIndex}
+                      className="aspect-square rounded-lg overflow-hidden"
+                    >
+                      <img
+                        src={img}
+                        alt={`${partner.name} - Imagem ${imgIndex + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Partner Info */}
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
+                    {partner.name}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                    {partner.description}
+                  </p>
+
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                    <span className="font-medium">📞</span>
+                    <span>{partner.phone}</span>
+                  </div>
+
+                  {/* WhatsApp Button */}
+                  <button
+                    onClick={() => {
+                      const message = encodeURIComponent(
+                        "Olá, venho do site da Charly Decorações e gostaria de saber mais informações sobre os seus serviços."
+                      );
+                      const phoneNumber = partner.phone.replace(/\D/g, '');
+                      window.open(`https://wa.me/55${phoneNumber}?text=${message}`, '_blank');
+                    }}
+                    className="w-full bg-gradient-primary text-white py-3 px-6 rounded-lg font-medium hover:scale-105 transition-transform duration-200 flex items-center justify-center gap-2"
+                  >
+                    <span>💬</span>
+                    Entrar em Contato
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <div className="text-6xl mb-4">🤝</div>
+            <h3 className="text-2xl font-bold text-foreground mb-2">
+              Em breve!
+            </h3>
+            <p className="text-muted-foreground">
+              Estamos trabalhando para trazer os melhores parceiros para você!
+            </p>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="mt-16 text-center">

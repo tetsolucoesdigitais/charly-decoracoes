@@ -23,7 +23,8 @@ const Index = () => {
       >
         <BookingForm />
         <Testimonials />
-        <Footer />
+        {/* Footer com popup apenas na página inicial */}
+        <Footer showPopup={true} />
       </div>
       
       {/* Back to Top Button */}
