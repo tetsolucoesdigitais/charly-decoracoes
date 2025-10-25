@@ -45,7 +45,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-b border-border/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-purple-500/30 shadow-lg shadow-purple-500/20" style={{ backgroundColor: '#180821' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -54,9 +54,9 @@ const Navbar = () => {
             onClick={goToHome}
           >
             <img 
-              src="https://i.imgur.com/9wU7G0V.png" 
-              alt="Charly" 
-              className="h-16 w-auto group-hover:scale-110 transition-transform"
+              src="https://i.imgur.com/nIshVim.png" 
+              alt="Charly Decorações" 
+              className="h-24 w-auto group-hover:scale-110 transition-transform"
             />
           </div>
 
@@ -64,7 +64,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("about")}
-              className="text-foreground hover:text-charly-pink transition-smooth font-medium"
+              className="text-purple-100 hover:text-pink-400 transition-smooth font-medium"
             >
               Sobre
             </button>
@@ -142,7 +142,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={() => setPortfolioOpen(!portfolioOpen)}
-                className="flex items-center text-foreground hover:text-charly-pink transition-smooth font-medium"
+                className="flex items-center text-purple-100 hover:text-pink-400 transition-smooth font-medium"
               >
                 Portfólio
                 <ChevronDown className={cn(
@@ -152,22 +152,85 @@ const Navbar = () => {
               </button>
               
               {portfolioOpen && (
-                <div className="absolute top-full mt-2 left-0 bg-card border border-border rounded-lg shadow-lg py-2 min-w-[150px]">
+                <div className="absolute top-full mt-2 left-0 bg-purple-900 border border-purple-500/30 rounded-lg shadow-lg py-2 min-w-[150px]">
                   <a
                    href="/galeria"
-                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
                  >
                     Imagens
                   </a>
                   <a
                    href="/videos"
-                   className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
                  >
                     Vídeos
                   </a>
                 </div>
               )}
             </div>
+            
+            <button
+              onClick={() => scrollToSection("booking")}
+              className="text-purple-100 hover:text-pink-400 transition-smooth font-medium"
+            >
+              Contato
+            </button>
+            
+            {/* Partners Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setPartnersOpen(!partnersOpen)}
+                className="flex items-center text-purple-100 hover:text-pink-400 transition-smooth font-medium"
+              >
+                Parceiros
+                <ChevronDown className={cn(
+                  "ml-1 h-4 w-4 transition-transform",
+                  partnersOpen && "rotate-180"
+                )} />
+              </button>
+              
+              {partnersOpen && (
+                <div className="absolute top-full mt-2 left-0 bg-purple-900 border border-purple-500/30 rounded-lg shadow-lg py-2 min-w-[180px]">
+                  <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
+                   >
+                    Iluminação especial
+                  </a>
+                  <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
+                   >
+                     Docinhos temáticos
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
+                   >
+                     Lembrancinhas
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
+                   >
+                     Fotografia
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth"
+                   >
+                     Buffet
+                   </a>
+                </div>
+              )}
+            </div>
+            
+            <a
+              href="/pegue-monte"
+              className="text-foreground hover:text-charly-pink transition-smooth font-medium"
+            >
+              Pegue Monte
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -185,10 +248,10 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-card/50 backdrop-blur-lg rounded-lg mt-2">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-purple-900/80 backdrop-blur-lg rounded-lg mt-2 border border-purple-500/30">
               <button
                 onClick={() => scrollToSection("about")}
-                className="block w-full text-left px-3 py-2 text-foreground hover:text-charly-pink transition-smooth font-medium"
+                className="block w-full text-left px-3 py-2 text-purple-100 hover:text-pink-300 transition-smooth font-medium"
               >
                 Sobre
               </button>
@@ -263,7 +326,7 @@ const Navbar = () => {
               <div className="px-3 py-1">
                 <button
                   onClick={() => setMobilePortfolioOpen(!mobilePortfolioOpen)}
-                  className="flex items-center justify-between w-full text-left text-sm font-medium text-muted-foreground mb-2 hover:text-charly-pink transition-smooth"
+                  className="flex items-center justify-between w-full text-left text-sm font-medium text-purple-300 mb-2 hover:text-pink-300 transition-smooth"
                 >
                   Portfólio
                   <ChevronDown className={cn(
@@ -275,19 +338,80 @@ const Navbar = () => {
                   <div className="space-y-1 ml-2">
                     <a
                        href="/galeria"
-                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
                      >
                        Imagens
                      </a>
                      <a
                        href="/videos"
-                       className="block w-full text-left px-3 py-1 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth rounded"
+                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
                      >
                        Vídeos
                      </a>
                   </div>
                 )}
               </div>
+              
+              <button
+                onClick={() => scrollToSection("booking")}
+                className="block w-full text-left px-3 py-2 text-purple-100 hover:text-pink-300 transition-smooth font-medium"
+              >
+                Contato
+              </button>
+              
+              <div className="px-3 py-1">
+                <button
+                  onClick={() => setMobilePartnersOpen(!mobilePartnersOpen)}
+                  className="flex items-center justify-between w-full text-left text-sm font-medium text-purple-300 mb-2 hover:text-pink-300 transition-smooth"
+                >
+                  Parceiros
+                  <ChevronDown className={cn(
+                    "h-4 w-4 transition-transform",
+                    mobilePartnersOpen && "rotate-180"
+                  )} />
+                </button>
+                {mobilePartnersOpen && (
+                  <div className="space-y-1 ml-2">
+                    <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
+                     >
+                       Iluminação especial
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
+                     >
+                       Docinhos temáticos
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
+                     >
+                       Lembrancinhas
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
+                     >
+                       Fotografia
+                     </a>
+                     <a
+                       href="/parceiros"
+                       className="block w-full text-left px-3 py-1 text-purple-100 hover:bg-pink-500/20 hover:text-pink-300 transition-smooth rounded"
+                     >
+                       Buffet
+                     </a>
+                  </div>
+                )}
+              </div>
+              
+              <a
+                href="/pegue-monte"
+                className="block w-full text-left px-3 py-2 text-purple-100 hover:text-pink-300 transition-smooth font-medium"
+              >
+                Pegue Monte
+              </a>
             </div>
           </div>
         )}

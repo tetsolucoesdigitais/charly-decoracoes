@@ -27,7 +27,7 @@ const Footer = ({ showServiceHoursPopup = false }: FooterProps) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasShownPopup, showServiceHoursPopup]);
+}, [hasShownPopup, showServiceHoursPopup]);
 
   const closePopup = (e?: React.MouseEvent) => {
     if (e) {
@@ -39,7 +39,7 @@ const Footer = ({ showServiceHoursPopup = false }: FooterProps) => {
 
   return (
     <footer className="relative bg-gradient-to-br from-slate-900 via-gray-900 to-black border-t border-gray-700/30">
-      {/* Modern dark background pattern */}
+      {/* Background Effects */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl"></div>
@@ -54,9 +54,9 @@ const Footer = ({ showServiceHoursPopup = false }: FooterProps) => {
             <div className="space-y-4">
               <div className="flex items-center">
                 <img 
-                   src="https://i.imgur.com/9wU7G0V.png" 
-                   alt="Charly" 
-                   className="h-20 w-auto floating hover:scale-110 transition-transform cursor-pointer"
+                  src="https://i.imgur.com/9wU7G0V.png" 
+                  alt="Charly" 
+                  className="h-20 w-auto floating hover:scale-110 transition-transform cursor-pointer"
                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                  />
               </div>
@@ -201,8 +201,8 @@ const Footer = ({ showServiceHoursPopup = false }: FooterProps) => {
         </div>
       </div>
 
-      {/* Weekend Popup */}
-      {showPopup && (
+      {/* Weekend Popup - Only on Index page */}
+      {showPopup && showServiceHoursPopup && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
           <div className="bg-gradient-to-br from-purple-900 via-fuchsia-800 to-pink-900 rounded-2xl p-8 max-w-md w-full mx-4 border border-charly-pink/30 shadow-2xl animate-in slide-in-from-bottom-4 duration-500">
             <div className="relative">

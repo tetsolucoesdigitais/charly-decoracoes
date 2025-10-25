@@ -8,7 +8,7 @@
 
 @layer base {
   :root {
-    /* Charly Brand Colors - Futuristic Dark Theme */
+    /* Charly Brand Colors - Modern Soft Palette */
     --charly-pink: 330 100% 75%;
     --charly-pink-light: 330 100% 85%;
     --charly-pink-dark: 330 100% 65%;
@@ -25,48 +25,50 @@
     --charly-gold-light: 45 100% 75%;
     --charly-gold-dark: 45 100% 55%;
     
-    /* System Colors - Dark Futuristic */
-    --background: 320 25% 15%;
-    --foreground: 320 10% 95%;
+    /* System Colors - Futuristic Purple Theme */
+    --background: 280 60% 8%;
+    --foreground: 0 0% 95%;
     
-    --card: 320 20% 18%;
-    --card-foreground: 320 10% 95%;
+    --card: 280 45% 12%;
+    --card-foreground: 0 0% 95%;
     
-    --popover: 320 20% 18%;
-    --popover-foreground: 320 10% 95%;
+    --popover: 280 45% 12%;
+    --popover-foreground: 0 0% 95%;
     
     --primary: 330 100% 75%;
-    --primary-foreground: 320 25% 15%;
+    --primary-foreground: 0 0% 100%;
     
     --secondary: 260 100% 80%;
-    --secondary-foreground: 320 25% 15%;
+    --secondary-foreground: 0 0% 100%;
     
-    --muted: 320 20% 22%;
-    --muted-foreground: 320 10% 65%;
+    --muted: 280 30% 20%;
+    --muted-foreground: 280 10% 65%;
     
     --accent: 170 100% 70%;
-    --accent-foreground: 320 25% 15%;
+    --accent-foreground: 280 60% 8%;
     
     --destructive: 0 84% 60%;
-    --destructive-foreground: 220 10% 95%;
+    --destructive-foreground: 0 0% 100%;
     
-    --border: 320 15% 25%;
-    --input: 320 18% 20%;
+    --border: 280 40% 25%;
+    --input: 280 35% 15%;
     --ring: 330 100% 75%;
     
     --radius: 1rem;
     
-    /* Gradients - Enhanced Futuristic */
+    /* Gradients - Futuristic Neon */
     --gradient-primary: linear-gradient(135deg, hsl(var(--charly-pink)), hsl(var(--charly-purple)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--charly-mint)), hsl(var(--charly-purple)));
     --gradient-accent: linear-gradient(135deg, hsl(var(--charly-gold)), hsl(var(--charly-pink)));
-    --gradient-hero: linear-gradient(135deg, hsl(320 25% 15%), hsl(320 20% 18%));
-    --gradient-futuristic: linear-gradient(135deg, hsl(var(--charly-pink) / 0.1), hsl(var(--charly-purple) / 0.1), hsl(var(--charly-mint) / 0.1));
+    --gradient-hero: linear-gradient(135deg, hsl(280 60% 8%), hsl(280 45% 12%));
+    --gradient-futuristic: linear-gradient(135deg, hsl(var(--charly-pink) / 0.2), hsl(var(--charly-purple) / 0.3), hsl(var(--charly-mint) / 0.2));
+    --gradient-neon: linear-gradient(135deg, hsl(330 100% 75% / 0.3), hsl(260 100% 80% / 0.3));
     
-    /* Shadows */
-    --shadow-glow: 0 0 40px hsl(var(--charly-pink) / 0.3);
-    --shadow-elegant: 0 20px 50px -10px hsl(var(--charly-purple) / 0.2);
-    --shadow-card: 0 10px 30px -5px hsl(var(--charly-pink) / 0.15);
+    /* Shadows - Neon Glow */
+    --shadow-glow: 0 0 40px hsl(var(--charly-pink) / 0.6), 0 0 80px hsl(var(--charly-purple) / 0.3);
+    --shadow-elegant: 0 20px 50px -10px hsl(var(--charly-purple) / 0.5);
+    --shadow-card: 0 10px 30px -5px hsl(var(--charly-pink) / 0.3);
+    --shadow-neon: 0 0 20px hsl(var(--charly-pink) / 0.8), 0 0 40px hsl(var(--charly-purple) / 0.5), inset 0 0 10px hsl(var(--charly-pink) / 0.2);
     
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
