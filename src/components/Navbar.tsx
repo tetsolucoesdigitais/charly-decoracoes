@@ -134,6 +134,12 @@ const Navbar = () => {
                      href="/parceiros"
                      className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
                    >
+                     Salão de Festas
+                   </a>
+                   <a
+                     href="/parceiros"
+                     className="block w-full text-left px-4 py-2 text-foreground hover:bg-charly-pink/10 hover:text-charly-pink transition-smooth"
+                   >
                      Papelaria
                    </a>
                 </div>

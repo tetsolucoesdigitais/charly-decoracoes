@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lightbulb, Cookie, Gift, Camera, UtensilsCrossed, FileText, MessageCircle, ExternalLink } from 'lucide-react';
+import { Lightbulb, Cookie, Gift, Camera, UtensilsCrossed, FileText, MessageCircle, ExternalLink, Home } from 'lucide-react';
 import { cn } from '../lib/utils';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -16,6 +16,7 @@ const Partners = () => {
     { id: 'souvenirs', name: 'Lembrancinhas', icon: Gift },
     { id: 'photography', name: 'Fotografia', icon: Camera },
     { id: 'buffet', name: 'Buffet', icon: UtensilsCrossed },
+    { id: 'salon', name: 'Salão de Festas', icon: Home },
     { id: 'papelaria', name: 'Papelaria', icon: FileText },
   ];
 
@@ -32,6 +33,48 @@ const Partners = () => {
         "https://i.imgur.com/5Yc7Y9c.jpeg"
       ],
       whatsapp: "5511963438061",
+      website: null
+    },
+    {
+      id: 2,
+      name: "Salão New Festas",
+      category: "salon",
+      description: "Espaço completo para eventos e celebrações especiais, oferecendo ambiente aconchegante e estrutura completa para tornar seu evento inesquecível.",
+      logo: "https://i.imgur.com/mSh1JIV.png",
+      photos: [
+        "https://lh3.googleusercontent.com/p/AF1QipOWR0Y_BqOgIIjEdPC080yah2J9zAbFwnoVYOau=s680-w680-h510-rw",
+        "https://lh3.googleusercontent.com/p/AF1QipNHjnxJ1JJN_VYr3joGbJY5cMlxV6zXHojuzKUt=s680-w680-h510-rw",
+        "https://lh3.googleusercontent.com/p/AF1QipNnez7T8kvhYpCmOi5bI9p4Xb5WktxxXqf2gzfx=s680-w680-h510-rw"
+      ],
+      whatsapp: "5511962789947",
+      website: null
+    },
+    {
+      id: 3,
+      name: "J.E Eventos - Casa com Piscina",
+      category: "salon",
+      description: "Casa especial para eventos com piscina, proporcionando um ambiente único e diferenciado para suas celebrações mais especiais.",
+      logo: "https://i.imgur.com/gWg6Kix.png",
+      photos: [
+        "https://i.imgur.com/ntl7bU6.png",
+        "https://i.imgur.com/4CCVEpG.png",
+        "https://i.imgur.com/kA7MPxm.png"
+      ],
+      whatsapp: "5511948534177",
+      website: null
+    },
+    {
+      id: 4,
+      name: "Buffet Lesssgal",
+      category: "buffet",
+      description: "Buffet especializado em eventos e celebrações, oferecendo cardápios personalizados e serviços de alta qualidade para tornar seu evento perfeito.",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAWCyM5riTFgUkPLbxP-QS-c-G3ybeWEUbDQ&s",
+      photos: [
+        "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSzLTKP5hSrECmKWu3UonfEdXKNp8cAPYV0GCCaispPd5NscLAf56iEQeHE9ygi3QF2Axcea6TVBwvJCayFGwePE8Q-bKXDepWl4gyulxz_9jPhoRaf9RP8VWAfUowD-7EEPZ1rYYw=s680-w680-h510-rw",
+        "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSzS0O_9lrhe-smYcAGyXIO_G8QENvZB1FvzA3lcY69pSqprVYEYZ52rPkPBT8mn9YlzgeR1UPWt9vx13tgKzXpBTtHi50hSgEzFLBM4Um-LCUXlvktt9rE57GROOyuDJ48ifjH9=s680-w680-h510-rw",
+        "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxa9caJzNVpRtsNDjD5ETt8gmQL4j4EkhRgGRgKhk0S8eGJ789_z6HO_lJa1EhAcqQ9PeV4Yxo6WPQEjUFYDA9c4rhCeqYLSo7Cs6Yk9XS06cPI9dfo5mx6czQxLovVbC430nQp=s680-w680-h510-rw"
+      ],
+      whatsapp: "5511969698249",
       website: null
     }
   ];
