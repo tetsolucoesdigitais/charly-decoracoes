@@ -76,6 +76,20 @@ const Partners = () => {
       ],
       whatsapp: "5511969698249",
       website: null
+    },
+    {
+      id: 5,
+      name: "Brubs Doces",
+      category: "sweets",
+      description: "Docinhos temáticos artesanais para eventos, com qualidade e sabor incomparáveis.",
+      logo: "https://i.imgur.com/jvwy31l.png",
+      photos: [
+        "https://i.imgur.com/OKRUqmV.jpeg",
+        "https://i.imgur.com/CDCh4lF.jpeg",
+        "https://i.imgur.com/FKyWbPK.jpeg"
+      ],
+      whatsapp: "5511982818524",
+      website: null
     }
   ];
 

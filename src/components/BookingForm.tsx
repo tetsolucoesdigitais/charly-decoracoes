@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, Send, User, MapPin, Calendar, Package, Instagram, Star, Copy, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Send, User, MapPin, Calendar, Package, Instagram, Star, Copy, Check, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface FormData {
@@ -56,6 +56,17 @@ const BookingForm = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [pixCopied, setPixCopied] = useState(false);
   const { toast } = useToast();
+
+  // Âncora para cabeçalho das etapas
+  const headerRef = useRef<HTMLDivElement | null>(null);
+
+  // Sempre que a etapa muda, fazer scroll para o cabeçalho
+  useEffect(() => {
+    if (headerRef.current) {
+      const y = headerRef.current.getBoundingClientRect().top + window.scrollY - 90; // compensar navbar fixa
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, [currentStep]);
 
   const pixKey = "11998041534";
 
@@ -380,6 +391,7 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
         </div>
 
         <Card className="max-w-4xl mx-auto card-elegant">
+          <div ref={headerRef} className="h-0" />
           <CardHeader className="px-4 sm:px-6 py-4 sm:py-6">
             <CardTitle className="text-xl sm:text-2xl lg:text-3xl text-center font-bold">
               {currentStep === 1 && "Dados Pessoais"}
@@ -564,6 +576,10 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
               <div className="space-y-6">
                 <div className="space-y-3">
                   <Label className="text-sm sm:text-base font-medium">Selecione os serviços desejados *</Label>
+                  <div className="mt-2 bg-amber-500/10 border border-amber-400/40 rounded-lg p-3 sm:p-4 flex items-start gap-3">
+                    <AlertTriangle className="w-5 h-5 text-amber-300 flex-shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm text-amber-100">Para prosseguir com o envio do orçamento, selecione um ou mais serviços acima.</p>
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4">
                     {serviceOptions.map((service) => (
                       <div
@@ -734,15 +750,21 @@ ${formData.additionalInfo ? `📝 *INFORMAÇÕES ADICIONAIS*\n${formData.additio
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
-                <Button
-                  variant="gradient"
-                  onClick={sendToWhatsApp}
-                  disabled={!isStepValid()}
-                  className="flex items-center justify-center w-full sm:w-auto order-1 sm:order-2 py-3 sm:py-2 text-base sm:text-sm font-medium"
-                >
-                  <Send className="w-4 h-4 mr-2" />
-                  Enviar Orçamento
-                </Button>
+                <div className="w-full sm:w-auto order-1 sm:order-2">
+                  <Button
+                    variant="gradient"
+                    onClick={sendToWhatsApp}
+                    disabled={!isStepValid()}
+                    className="flex items-center justify-center w-full py-3 sm:py-2 text-base sm:text-sm font-medium"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    Enviar Orçamento
+                  </Button>
+                  <div className="mt-3 bg-amber-500/10 border border-amber-400/40 rounded-lg p-3 sm:p-4 flex items-start gap-3">
+                    <AlertTriangle className="w-5 h-5 text-amber-300 flex-shrink-0 mt-0.5" />
+                    <p className="text-xs sm:text-sm text-amber-100">Para prosseguir com o envio do orçamento, selecione um ou mais serviços acima.</p>
+                  </div>
+                </div>
               )}
             </div>
           </CardContent>
